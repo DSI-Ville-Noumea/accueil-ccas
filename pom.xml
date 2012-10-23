@@ -10,19 +10,19 @@
 		<name>Mairie de Nouméa</name>
 		<url>http://www.ville-noumea.nc</url>
 	</organization>
-	
+
 	<licenses>
-  <license>
-    <name>Licence Boulogne Billancourt</name>
-    <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-    <distribution>repo</distribution>
-    <comments>A business-friendly OSS license</comments>
-  </license>
-</licenses>
+		<license>
+			<name>Licence Boulogne Billancourt</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
 
 
-	
-	
+
+
 	<developers>
 		<developer>
 			<id>nicolas</id>
@@ -35,7 +35,7 @@
 				<role>Développeur</role>
 			</roles>
 		</developer>
-		
+
 		<developer>
 			<id>SALAD74</id>
 			<name>Adrien SALES</name>
@@ -50,48 +50,49 @@
 		</developer>
 	</developers>
 	<contributors>
-<contributor>
-      <name>Laure DESSAULT</name>
-      <email>Laure.dessault@ville-noumea.nc</email>
-      <organization>Mairie de Nouméa</organization>
-      <organizationUrl>http://www.ville-noumea.nc/</organizationUrl>
-      <roles>
-        <role>Utilisateur</role>
-        <role>Administrateur Fonctionnel</role>
-      </roles>
-      <timezone>-11</timezone>
-    </contributor>
-	
-	<contributor>
-      <name>Ghislaine GRAMMONT</name>
-      <email>Ghislaine.Grammont@ville-noumea.nc</email>
-      <organization>Mairie de Nouméa</organization>
-      <organizationUrl>http://www.ville-noumea.nc/</organizationUrl>
-      <roles>
-        <role>Utilisateur</role>
-        <role>Administrateur Fonctionnel</role>
-      </roles>
-      <timezone>-11</timezone>
-    </contributor>
-	
 		<contributor>
-      <name>Valérie LECLERC</name>
-      <email>Valerie.Leclerc@ville-noumea.nc</email>
-      <organization>Mairie de Nouméa</organization>
-      <organizationUrl>http://www.ville-noumea.nc/</organizationUrl>
-      <roles>
-        <role>Utilisateur</role>
-        <role>Administrateur Fonctionnel</role>
-      </roles>
-      <timezone>-11</timezone>
-    </contributor>
-	
+			<name>Laure DESSAULT</name>
+			<email>Laure.dessault@ville-noumea.nc</email>
+			<organization>Mairie de Nouméa</organization>
+			<organizationUrl>http://www.ville-noumea.nc/</organizationUrl>
+			<roles>
+				<role>Utilisateur</role>
+				<role>Administrateur Fonctionnel</role>
+			</roles>
+			<timezone>-11</timezone>
+		</contributor>
+
+		<contributor>
+			<name>Ghislaine GRAMMONT</name>
+			<email>Ghislaine.Grammont@ville-noumea.nc</email>
+			<organization>Mairie de Nouméa</organization>
+			<organizationUrl>http://www.ville-noumea.nc/</organizationUrl>
+			<roles>
+				<role>Utilisateur</role>
+				<role>Administrateur Fonctionnel</role>
+			</roles>
+			<timezone>-11</timezone>
+		</contributor>
+
+		<contributor>
+			<name>Valérie LECLERC</name>
+			<email>Valerie.Leclerc@ville-noumea.nc</email>
+			<organization>Mairie de Nouméa</organization>
+			<organizationUrl>http://www.ville-noumea.nc/</organizationUrl>
+			<roles>
+				<role>Utilisateur</role>
+				<role>Administrateur Fonctionnel</role>
+			</roles>
+			<timezone>-11</timezone>
+		</contributor>
+
 
 	</contributors>
 	<description>
-		Logiciel de gestion d'acueil du CCAS : il permet de saisir
+		Logiciel de gestion d'acueil du CCAS : il permet de saisir les demandes relatives aux CCAS (demandes
+		de tickets, ...), de les enregistrer pour ensuite pouvoir en faire des statistiques.
 	</description>
-	
+
 	<!-- Gestion de bugs a customiser -->
 	<!-- 
 	<issueManagement>
@@ -100,12 +101,12 @@
   </issueManagement>
   
   -->
-	
+
 	<scm>
-        <connection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</connection>
-        <developerConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</developerConnection>
-        <url>https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</url>
-    </scm>
+		<connection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</connection>
+		<developerConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</developerConnection>
+		<url>https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</url>
+	</scm>
 
 	<!--
    <distributionManagement>
@@ -240,13 +241,13 @@
 			<artifactId>displaytag</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>displaytag</groupId>
-            <artifactId>displaytag-export-poi</artifactId>
-            <version>1.2</version>
-        </dependency>
-		
+			<groupId>displaytag</groupId>
+			<artifactId>displaytag-export-poi</artifactId>
+			<version>1.2</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>taglibs</groupId>
@@ -260,11 +261,6 @@
 			<version>1.2</version>
 		</dependency>
 
-
-
-
-
-
 		<!--
 	Drivers bases de données
 	-->
@@ -273,7 +269,7 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.1-901.jdbc4</version>
 		</dependency>
-		
+
 		<!-- Si on travailler avec MySQL-->
 		<!--
 		<dependency>
@@ -297,12 +293,12 @@
 			<artifactId>dwr</artifactId>
 			<version>3.0.M1</version>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>2.2.2</version>
-        </dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 
 		<!--            
         
