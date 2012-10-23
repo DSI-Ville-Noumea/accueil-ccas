@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- CONTROLER POUR LES STATS GENERALES -->
+	<bean name="statgenController" class="accueilccas.web.controllers.StatGeneralesController">
+		<property name="rapportManager"><ref bean="RapportManager"/></property>
+		<property name="userManager"><ref bean="UserManager"/></property>
+	</bean>
+	
+	
+	<!-- CONTROLER POUR LES STATS HEBDOMADAIRE -->
+	<bean name="statjourController" class="accueilccas.web.controllers.StatJourController">
+		<property name="accueilManager"><ref bean="AccueilManager"/></property>
+		<property name="datasetPhysique"><ref bean="AccueilDataSetProducer1"/></property>
+		<property name="datasetTel"><ref bean="AccueilDataSetProducer2"/></property>
+		<property name="userManager"><ref bean="UserManager"/></property>
+	</bean>
+	<bean id="AccueilDataSetProducer1" class="accueilccas.bean.stat.AccueilDataSetProducer">
+		<property name="accueilDao"><ref bean="AccueilDAO"/></property>
+		<property name="type" value="1"/>
+	</bean>
+	<bean id="AccueilDataSetProducer2" class="accueilccas.bean.stat.AccueilDataSetProducer">
+		<property name="accueilDao"><ref bean="AccueilDAO"/></property>
+		<property name="type" value="2"/>
+	</bean>
+	
+	
+	<!-- CONTROLER POUR LES SAISIS DE DOSSIERS -->
+	<bean name="accueilController" class="accueilccas.web.controllers.AccueilController">
+	    <property name="sessionForm" value="true"/>
+		<property name="commandName" value="accueil" />
+		<property name="commandClass" value="accueilccas.bean.Accueil"/>
+		<property name="formView" value="accueil"/>
+		<property name="successView" value="accueil.do"/>
+		<property name="accueilManager"><ref bean="AccueilManager"/></property>
+		<property name="categorieManager"><ref bean="CategorieManager"/></property>
+		<property name="typepublicManager"><ref bean="TypePublicManager"/></property>
+		<property name="typereceptionManager"><ref bean="TypeReceptionManager"/></property>
+		<property name="userManager"><ref bean="UserManager"/></property>
+		<property name="groupeManager"><ref bean="GroupeManager"/></property>
+		<property name="typePublicProperty"><ref bean="TypePublicProperty"/></property>
+		<property name="typeReceptionProperty"><ref bean="TypeReceptionProperty"/></property>
+		<property name="attributCategorieProperty"><ref bean="AttributCategorieProperty"/></property>
+		<property name="userProperty"><ref bean="UserProperty"/></property>
+		<property name="validator"><ref bean="AccueilValidator"/></property>
+	</bean>
+	<bean id="AccueilValidator" class="accueilccas.web.validators.AccueilValidator"/>
+	<bean id="TypePublicProperty" class="accueilccas.web.editors.TypePublicProperty">
+		<property name="typepublicManager"><ref bean="TypePublicManager"/></property>
+	</bean>
+	<bean id="TypeReceptionProperty" class="accueilccas.web.editors.TypeReceptionProperty">
+		<property name="typeReceptionManager"><ref bean="TypeReceptionManager"/></property>
+	</bean>
+	<bean id="AttributCategorieProperty" class="accueilccas.web.editors.AttributCategorieProperty">
+			<property name="categorieManager"><ref bean="CategorieManager"/></property>
+	</bean>
+	<bean id="UserProperty" class="accueilccas.web.editors.UserProperty">
+		<property name="userManager"><ref bean="UserManager"/></property>
+	</bean>
+	
+	
+
+	<!-- CONTROLER POUR L'ADMINISTRATION  -->
+	<bean name="adminController" class="accueilccas.web.controllers.AdministrationController">
+		<property name="receptionManager"><ref bean="TypeReceptionManager"/></property>
+		<property name="publicManager"><ref bean="TypePublicManager"/></property>
+		<property name="categorieManager"><ref bean="CategorieManager"/></property>
+		<property name="attributCategorieManager"><ref bean="AttributCategorieManager"/></property>
+		<property name="userManager"><ref bean="UserManager"/></property>
+		<property name="groupeManager"><ref bean="GroupeManager" /></property>
+	</bean>
+
+
+	
+	<!-- CONTROLER POUR L'ADMINISTRATION DES RAPPORTS -->
+	<bean name="adminrapportController" class="accueilccas.web.controllers.AdminRapportController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="rapport" />
+		<property name="commandClass" value="accueilccas.bean.Rapport" />
+		<property name="formView" value="adminrapport" />
+		<property name="successView" value="adminrapport.do" />
+		<property name="rapportManager">
+			<ref bean="RapportManager" />
+		</property>
+	</bean>
+
+	<!-- CONTROLER POUR L'ADMINISTRATION DES RAPPORTS 2 -->
+	<bean name="adminuploadrapportController"
+		class="accueilccas.web.controllers.AdminUploadRapportController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="fileuploadbean" />
+		<property name="commandClass" value="accueilccas.bean.FileUploadBean" />
+		<property name="formView" value="adminuploadrapport" />
+		<property name="successView" value="adminrapport" />
+		<property name="chemin" value="\\we2008\\rapports\test" />
+		<property name="urlServeur" value="http://we2008/birt/frameset?__report=report/"/>
+	</bean>
+
+	<!-- CONTROLER POUR L'ADMINISTRATION DES USERS -->
+	<bean name="adminuserController" class="accueilccas.web.controllers.AdminUserController">
+		<property name="sessionForm" value="true" />
+		<property name="commandName" value="user" />
+		<property name="commandClass" value="accueilccas.bean.User" />
+		<property name="formView" value="adminuser" />
+		<property name="successView" value="adminuser.do" />
+		<property name="userProperty">
+			<ref bean="UserProperty" />
+		</property>
+		<property name="userManager">
+			<ref bean="UserManager" />
+		</property>
+	</bean>
+
+
+
+	<!-- Dispatcher -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+            	<prop key="/accueil.do">accueilController</prop>
+				<prop key="/statjour.do">statjourController</prop>
+				<prop key="/statgen.do">statgenController</prop>
+				<prop key="/admin.do">adminController</prop>
+				<prop key="/adminuser.do">adminuserController</prop>
+				<prop key="/adminrapport.do">adminrapportController</prop>
+				<prop key="/adminuploadrapport.do">adminuploadrapportController</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- Permet de selectionner une vue jsp par rapport au modele fourni dans le controller -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass">
+           <value>org.springframework.web.servlet.view.JstlView</value>
+        </property>
+        <property name="prefix"><value>/jsp/</value></property>
+        <property name="suffix"><value>.jsp</value></property>
+    </bean>
+	
+</beans>

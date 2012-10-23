@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="SpringTest2" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>accueilccas</display-name>
+
+
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext*.xml;</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+
+	<!--<taglib>
+  <taglib-uri>
+    /spring
+  </taglib-uri>
+  <taglib-location>
+    /WEB-INF/tlds/spring.tld
+  </taglib-location>
+</taglib>
+-->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>
+                     /spring
+			</taglib-uri>
+			<taglib-location>
+                     /WEB-INF/tlds/spring.tld
+			</taglib-location>
+		</taglib>
+
+		<taglib>
+			<taglib-uri>/cewolf</taglib-uri>
+			<taglib-location>/WEB-INF/tlds/cewolf.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+
+
+	<servlet>
+		<servlet-name>accueilccas</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>accueilccas</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+
+	<filter>
+		<filter-name>HibernateFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
+		</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>HibernateFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- POUR LES STATISTIQUES  -->
+	<servlet>
+		<servlet-name>CewolfServlet</servlet-name>
+		<servlet-class>de.laures.cewolf.CewolfRenderer</servlet-class>
+		<init-param>
+			<param-name>storage</param-name>
+			<param-value>
+				de.laures.cewolf.storage.TransientSessionStorage
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>overliburl</param-name>
+			<param-value>js/overlib.js</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CewolfServlet</servlet-name>
+		<url-pattern>/cewolf/*</url-pattern>
+	</servlet-mapping>
+
+
+
+	<filter>
+		<filter-name>NtlmHttpFilter</filter-name>
+		<filter-class>jcifs.http.NtlmHttpFilter</filter-class>
+		<init-param>
+			<param-name>jcifs.http.domainController</param-name>
+			<param-value>gberge.site-mairie.noumea.nc</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jcifs.smb.client.domain</param-name>
+			<param-value>SITE-MAIRIE</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jcifs.encoding</param-name>
+			<param-value>Cp1252</param-value>
+		</init-param>
+
+		<!-- Pour corriger -->
+		
+		<init-param>
+			<param-name>jcifs.smb.client.username</param-name>
+			<param-value>adminwas</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jcifs.smb.client.password</param-name>
+			<param-value>planet</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>jcifs.smb.lmCompatibility</param-name>
+			<!--<param-value>3</param-value>-->
+			<param-value>0</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>jcifs.smb.client.useExtendedSecurity</param-name>
+			<!--<param-value>true</param-value>-->
+			<param-value>false</param-value>
+		</init-param>
+
+		
+		<init-param>
+			<param-name>jcifs.util.loglevel</param-name>
+			<param-value>3</param-value>
+		</init-param>
+		
+		
+
+
+	</filter>
+
+	<filter-mapping>
+		<filter-name>NtlmHttpFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/error/error404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/jsp/error/error500.jsp</location>
+	</error-page>
+
+	<!-- DWR Servlet -->
+	<servlet>
+		<servlet-name>dwr</servlet-name>
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dwr</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>

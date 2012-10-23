@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="accueilccas.bean.Categorie" table="Categorie">
+      	<id name="idCategorie" column="cat_id">
+      		<generator class="native" />
+      	</id>
+ 	 	
+      	<property name="libelleCategorie" column="cat_libelle"/> 	
+      	<property name="positionCategorie" column="cat_position"/>
+      	<property name="enabled" column="cat_enabled"/>
+      	<many-to-one name="groupe" column="groupe_id" not-null="true" class="accueilccas.bean.Groupe" />
+      	
+      	<bag name="attributs" table="AttributCategorie" order-by="att_position asc" lazy="false" inverse="true" cascade="save-update">
+    	    <key column="att_categorie"/>
+    	    <one-to-many class="accueilccas.bean.AttributCategorie"/>
+		</bag>
+      		
+	</class> 
+    
+    
+</hibernate-mapping>

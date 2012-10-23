@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN" "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+<dwr> 
+
+ 	<allow> 
+		
+		<create creator="spring" javascript="CategorieManager" scope="application"> 
+			<param name="beanName" value="CategorieManager"/> 
+		</create> 
+		<convert converter="bean" match="accueilccas.bean.Categorie" /> 
+		
+		<create creator="spring" javascript="TypePublicManager" scope="application"> 
+			<param name="beanName" value="TypePublicManager"/> 
+		</create> 
+		<convert converter="bean" match="accueilccas.bean.TypePublic" />
+		
+		<create creator="spring" javascript="TypeReceptionManager" scope="application"> 
+			<param name="beanName" value="TypeReceptionManager"/> 
+		</create> 
+		<convert converter="bean" match="accueilccas.bean.TypeReception" />
+		
+		<create creator="spring" javascript="AttributCategorieManager" scope="application"> 
+			<param name="beanName" value="AttributCategorieManager"/> 
+		</create> 
+		<convert converter="bean" match="accueilccas.bean.AttributCategorie" /> 
+		
+		<create creator="spring" javascript="UserManager" scope="application"> 
+			<param name="beanName" value="UserManager"/> 
+		</create> 
+		<convert converter="bean" match="accueilccas.bean.User" /> 
+		
+		<create creator="spring" javascript="GroupeManager" scope="application"> 
+			<param name="beanName" value="GroupeManager"/> 
+		</create> 
+		<convert converter="bean" match="accueilccas.bean.Groupe" />
+		
+		
+	</allow>
+ 
+</dwr>

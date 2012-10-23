@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.17" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 2.3.1.v20080911 Build &lt;2.3.1.v20080922-1151></property>
+    <property name="units">in</property>
+    <list-property name="userProperties">
+        <structure>
+            <property name="name">Data Cube.FICHES.x</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+        <structure>
+            <property name="name">Data Cube.FICHES.y</property>
+            <property name="type">integer</property>
+            <property name="isVisible">false</property>
+        </structure>
+    </list-property>
+    <property name="Data Cube.FICHES.x">135</property>
+    <property name="Data Cube.FICHES.y">80</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="CCAS_ACCUEIL" id="6">
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://db8100:3306/accueilccas_prod</property>
+            <property name="odaUser">ccas</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">Y2Nhcw==</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FICHES" id="7">
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">acc_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">acc_date</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">acc_commentaire</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">att_libelle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">cat_libelle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">pub_libelle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">rec_libelle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">login</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">CCAS_ACCUEIL</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">acc_id</property>
+                    <property name="nativeName">acc_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">acc_date</property>
+                    <property name="nativeName">acc_date</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">acc_commentaire</property>
+                    <property name="nativeName">acc_commentaire</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">att_libelle</property>
+                    <property name="nativeName">att_libelle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">cat_libelle</property>
+                    <property name="nativeName">cat_libelle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">pub_libelle</property>
+                    <property name="nativeName">pub_libelle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">rec_libelle</property>
+                    <property name="nativeName">rec_libelle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">login</property>
+                    <property name="nativeName">login</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <property name="queryText">select Accueil.acc_id, Accueil.acc_date,Accueil.acc_commentaire,
+	   AttributCategorie.att_libelle, Categorie.cat_libelle,TypePublic.pub_libelle, 
+	   TypeReception.rec_libelle,User.login
+from Accueil,AttributCategorie,Categorie,TypeReception,TypePublic,User
+where Accueil.acc_typereception =TypeReception.rec_id
+and Accueil.acc_typereponse =AttributCategorie.att_id
+and Accueil.acc_typepublic = TypePublic.pub_id
+and Categorie.cat_id = AttributCategorie.att_categorie
+and User.id=Accueil.id_agent</property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="RECEPTIONS" id="113">
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">rec_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">rec_libelle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">rec_position</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">CCAS_ACCUEIL</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">rec_id</property>
+                    <property name="nativeName">rec_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">rec_libelle</property>
+                    <property name="nativeName">rec_libelle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">rec_position</property>
+                    <property name="nativeName">rec_position</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <property name="queryText">select *
+from TypeReception</property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="CATEGORIES" id="114">
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">cat_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">cat_libelle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">cat_position</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">CCAS_ACCUEIL</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">cat_id</property>
+                    <property name="nativeName">cat_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">cat_libelle</property>
+                    <property name="nativeName">cat_libelle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">cat_position</property>
+                    <property name="nativeName">cat_position</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <property name="queryText">select *
+from Categorie</property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="REPONSES" id="233">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">att_id</property>
+                    <property name="alias">ID</property>
+                    <property name="displayName">ID</property>
+                </structure>
+                <structure>
+                    <property name="columnName">att_libelle</property>
+                    <property name="alias">libelle</property>
+                    <property name="displayName">libelle</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">ID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">libelle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">att_position</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">att_categorie</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">CCAS_ACCUEIL</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">att_id</property>
+                    <property name="nativeName">att_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">att_libelle</property>
+                    <property name="nativeName">att_libelle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">att_position</property>
+                    <property name="nativeName">att_position</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">att_categorie</property>
+                    <property name="nativeName">att_categorie</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <property name="queryText">select *
+from AttributCategorie</property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="USER" id="403">
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">login</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">css</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">admin</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">CCAS_ACCUEIL</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">login</property>
+                    <property name="nativeName">login</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">css</property>
+                    <property name="nativeName">css</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">admin</property>
+                    <property name="nativeName">admin</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <property name="queryText">select *
+from User</property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="GROUPE" id="404">
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">group_id</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">nom_groupe</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">position_groupe</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">CCAS_ACCUEIL</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">group_id</property>
+                    <property name="nativeName">group_id</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">nom_groupe</property>
+                    <property name="nativeName">nom_groupe</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">position_groupe</property>
+                    <property name="nativeName">position_groupe</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <property name="queryText">select *
+from Groupe</property>
+        </oda-data-set>
+    </data-sets>
+    <cubes>
+        <tabular-cube name="Data Cube" id="560">
+            <property name="dimensions">
+                <tabular-dimension name="Group" id="563">
+                    <property name="defaultHierarchy">NewTabularHierarchy</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy" id="564">
+                            <property name="levels">
+                                <tabular-level name="pub_libelle" id="565">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">pub_libelle</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="Group1" id="566">
+                    <property name="defaultHierarchy">NewTabularHierarchy1</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy1" id="567">
+                            <property name="levels">
+                                <tabular-level name="att_libelle" id="568">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">att_libelle</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+            </property>
+            <property name="measureGroups">
+                <tabular-measure-group name="Summary Field" id="561">
+                    <property name="measures">
+                        <tabular-measure name="acc_id" id="562">
+                            <property name="function">count</property>
+                            <expression name="measureExpression">dataSetRow["acc_id"]</expression>
+                            <property name="dataType">integer</property>
+                        </tabular-measure>
+                    </property>
+                </tabular-measure-group>
+            </property>
+            <property name="dataSet">FICHES</property>
+        </tabular-cube>
+    </cubes>
+    <styles>
+        <style name="crosstab-cell" id="4">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Page 1" id="2"/>
+        <simple-master-page name="Page2" id="376"/>
+    </page-setup>
+    <body>
+        <text id="648">
+            <property name="fontSize">x-large</property>
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <property name="contentType">auto</property>
+            <text-property name="content"><![CDATA[Liste des commentaires]]></text-property>
+        </text>
+        <table id="596">
+            <property name="width">100%</property>
+            <property name="dataSet">FICHES</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">acc_id</property>
+                    <property name="displayName">acc_id</property>
+                    <expression name="expression">dataSetRow["acc_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">acc_date</property>
+                    <property name="displayName">acc_date</property>
+                    <expression name="expression">dataSetRow["acc_date"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">acc_commentaire</property>
+                    <property name="displayName">acc_commentaire</property>
+                    <expression name="expression">dataSetRow["acc_commentaire"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">att_libelle</property>
+                    <property name="displayName">att_libelle</property>
+                    <expression name="expression">dataSetRow["att_libelle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cat_libelle</property>
+                    <property name="displayName">cat_libelle</property>
+                    <expression name="expression">dataSetRow["cat_libelle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">pub_libelle</property>
+                    <property name="displayName">pub_libelle</property>
+                    <expression name="expression">dataSetRow["pub_libelle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">rec_libelle</property>
+                    <property name="displayName">rec_libelle</property>
+                    <expression name="expression">dataSetRow["rec_libelle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">login</property>
+                    <property name="displayName">login</property>
+                    <expression name="expression">dataSetRow["login"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">ne</property>
+                    <expression name="expr">row["acc_commentaire"]</expression>
+                    <simple-property-list name="value1">
+                        <value>""</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <column id="641"/>
+            <column id="642"/>
+            <column id="643"/>
+            <column id="645"/>
+            <column id="646"/>
+            <column id="647"/>
+            <header>
+                <row id="597">
+                    <cell id="600">
+                        <label id="601">
+                            <text-property name="text">Date</text-property>
+                        </label>
+                    </cell>
+                    <cell id="602">
+                        <label id="603">
+                            <text-property name="text">Commentaire</text-property>
+                        </label>
+                    </cell>
+                    <cell id="604">
+                        <label id="605">
+                            <text-property name="text">Réponse</text-property>
+                        </label>
+                    </cell>
+                    <cell id="608">
+                        <label id="609">
+                            <text-property name="text">Public</text-property>
+                        </label>
+                    </cell>
+                    <cell id="610">
+                        <label id="611">
+                            <text-property name="text">Réception</text-property>
+                        </label>
+                    </cell>
+                    <cell id="612">
+                        <label id="613">
+                            <text-property name="text">Agent</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="614">
+                    <cell id="617">
+                        <data id="618">
+                            <property name="resultSetColumn">acc_date</property>
+                        </data>
+                    </cell>
+                    <cell id="619">
+                        <data id="620">
+                            <property name="resultSetColumn">acc_commentaire</property>
+                        </data>
+                    </cell>
+                    <cell id="621">
+                        <data id="622">
+                            <property name="resultSetColumn">att_libelle</property>
+                        </data>
+                    </cell>
+                    <cell id="625">
+                        <data id="626">
+                            <property name="resultSetColumn">pub_libelle</property>
+                        </data>
+                    </cell>
+                    <cell id="627">
+                        <data id="628">
+                            <property name="resultSetColumn">rec_libelle</property>
+                        </data>
+                    </cell>
+                    <cell id="629">
+                        <data id="630">
+                            <property name="resultSetColumn">login</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="631">
+                    <cell id="633"/>
+                    <cell id="634"/>
+                    <cell id="635"/>
+                    <cell id="637"/>
+                    <cell id="638"/>
+                    <cell id="639"/>
+                </row>
+            </footer>
+        </table>
+        <text-data id="729">
+            <property name="fontStyle">italic</property>
+            <property name="textAlign">right</property>
+            <expression name="valueExpr">"Source CCAS ( "+ BirtDateTime.year(new Date()) +")"</expression>
+            <property name="contentType">html</property>
+        </text-data>
+    </body>
+</report>
