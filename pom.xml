@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>nc.noumea.mairie</groupId>
+	<artifactId>ccas</artifactId>
+	<packaging>war</packaging>
+	<name>Accueil CCAS</name>
+	<version>0.1.0-SNAPSHOT</version>	
+	<organization>
+		<name>Mairie de Nouméa</name>
+		<url>http://www.ville-noumea.nc</url>
+	</organization>
+	
+	<licenses>
+  <license>
+    <name>Licence Boulogne Billancourt</name>
+    <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    <distribution>repo</distribution>
+    <comments>A business-friendly OSS license</comments>
+  </license>
+</licenses>
+
+
+	
+	
+	<developers>
+		<developer>
+			<id>nicolas</id>
+			<name>Nicolas PIHEN</name>
+			<timezone>-6</timezone>
+			<email>nicolas.pihen@mairie-boulogne-billancourt.fr</email>
+			<url>http://www.boulognebillancourt.com</url>
+			<roles>
+				<role>Architecte logiciel</role>
+				<role>Développeur</role>
+			</roles>
+		</developer>
+		
+		<developer>
+			<id>SALAD74</id>
+			<name>Adrien SALES</name>
+			<timezone>-11</timezone>
+			<email>salad74@ville-noumea.nc</email>
+			<url>svpatdi/annuaire/vcards/905131.vcf</url>
+			<roles>
+				<role>Chef de département</role>
+				<role>Architecte logiciel</role>
+				<role>Développeur</role>
+			</roles>
+		</developer>
+	</developers>
+	<contributors>
+<contributor>
+      <name>Laure DESSAULT</name>
+      <email>Laure.dessault@ville-noumea.nc</email>
+      <organization>Mairie de Nouméa</organization>
+      <organizationUrl>http://www.ville-noumea.nc/</organizationUrl>
+      <roles>
+        <role>Utilisateur</role>
+        <role>Administrateur Fonctionnel</role>
+      </roles>
+      <timezone>-11</timezone>
+    </contributor>
+	
+	<contributor>
+      <name>Ghislaine GRAMMONT</name>
+      <email>Ghislaine.Grammont@ville-noumea.nc</email>
+      <organization>Mairie de Nouméa</organization>
+      <organizationUrl>http://www.ville-noumea.nc/</organizationUrl>
+      <roles>
+        <role>Utilisateur</role>
+        <role>Administrateur Fonctionnel</role>
+      </roles>
+      <timezone>-11</timezone>
+    </contributor>
+	
+		<contributor>
+      <name>Valérie LECLERC</name>
+      <email>Valerie.Leclerc@ville-noumea.nc</email>
+      <organization>Mairie de Nouméa</organization>
+      <organizationUrl>http://www.ville-noumea.nc/</organizationUrl>
+      <roles>
+        <role>Utilisateur</role>
+        <role>Administrateur Fonctionnel</role>
+      </roles>
+      <timezone>-11</timezone>
+    </contributor>
+	
+
+	</contributors>
+	<description>
+		Logiciel de gestion d'acueil du CCAS : il permet de saisir
+	</description>
+	
+	<!-- Gestion de bugs a customiser -->
+	<!-- 
+	<issueManagement>
+    <system>trac</system>
+    <url>http://mytracserver.local/trac/MYPROJECT/</url>
+  </issueManagement>
+  
+  -->
+	
+	<scm>
+        <connection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</connection>
+        <developerConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</developerConnection>
+        <url>https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</url>
+    </scm>
+
+	<!--
+   <distributionManagement>
+        <site>
+            <id>sirhWS.website</id>
+            <name>SIRH WebServices Website</name>
+            <url>file:\\cristal\dsi$\DSI\PROJETS\1 - EN COURS\2 - Métiers\SIRH\3-Techniques\Documentation_Agile</url>
+        </site>
+    </distributionManagement>
+	-->
+
+	<properties>
+		<java.version>6</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format> 
+	</properties>
+
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>6.0.35</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+
+
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>jasper</artifactId>
+			<version>6.0.35</version>
+			<!-- Ajout de l'exclusion pour etre compatible Tomcat 7 -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.tomcat</groupId>
+					<artifactId>catalina</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+
+
+
+
+		<dependency>
+			<groupId>cewolf</groupId>
+			<artifactId>cewolf</artifactId>
+			<version>1.0</version>
+			<!-- Enlever gnujaxp pour le parse des xsd sout Tomcat 7 -->
+			<exclusions>
+				<exclusion>
+					<groupId>gnujaxp</groupId>
+					<artifactId>gnujaxp</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>crimson</groupId>
+					<artifactId>crimson</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>3.1.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.1.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>3.1.2.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>3.1.2.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-hibernate3</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>3.1.2.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>3.1.2.RELEASE</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>jta</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>displaytag</groupId>
+			<artifactId>displaytag</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>displaytag</groupId>
+            <artifactId>displaytag-export-poi</artifactId>
+            <version>1.2</version>
+        </dependency>
+		
+
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+
+
+
+
+
+		<!--
+	Drivers bases de données
+	-->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.1-901.jdbc4</version>
+		</dependency>
+		
+		<!-- Si on travailler avec MySQL-->
+		<!--
+		<dependency>
+	<groupId>mysql</groupId>
+	<artifactId>mysql-connector-java</artifactId>
+	<version>5.1.21</version>
+</dependency>
+-->
+
+
+
+		<dependency>
+			<groupId>jcifs</groupId>
+			<artifactId>jcifs</artifactId>
+			<version>1.3.17</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.directwebremoting</groupId>
+			<artifactId>dwr</artifactId>
+			<version>3.0.M1</version>
+		</dependency>
+		
+		<dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+		<!--            
+        
+
+        <dependency>
+            <groupId>net.sourceforge.jexcelapi</groupId>
+            <artifactId>jxl</artifactId>
+            <version>2.6.12</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.5</version>
+        </dependency>
+                    
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>oscache</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.8</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>3.8</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>3.1.2.RELEASE</version>
+        </dependency>
+            
+        <dependency>
+    <groupId>org.springframework.ldap</groupId>
+    <artifactId>spring-ldap-core</artifactId>
+    <version>1.3.1.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.ldap</groupId>
+    <artifactId>spring-ldap-core-tiger</artifactId>
+    <version>1.3.1.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.ldap</groupId>
+    <artifactId>spring-ldap-odm</artifactId>
+    <version>1.3.1.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.ldap</groupId>
+    <artifactId>spring-ldap-ldif-core</artifactId>
+    <version>1.3.1.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.ldap</groupId>
+    <artifactId>spring-ldap-ldif-batch</artifactId>
+    <version>1.3.1.RELEASE</version>
+</dependency>
+            
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>3.1.2.RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>3.1.2.RELEASE</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>3.1.2.RELEASE</version>
+        </dependency>
+        
+	<dependency>
+	<groupId>wsdl4j</groupId>
+	<artifactId>wsdl4j</artifactId>
+	<version>1.6.2</version>
+</dependency>
+
+        <dependency>
+            <groupId>org.apache.xbean</groupId>
+            <artifactId>xbean-spring</artifactId>
+            <version>3.11.1</version>
+        </dependency>
+            
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>1.3.02</version>
+    
+        </dependency>
+	
+	
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.2</version>
+        </dependency>
+
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+		-->
+
+	</dependencies>
+	<build>
+		<!-- <finalName>sirhws##${project.version}-${buildNumber}</finalName> -->
+		<!--<finalName>sirhws##${project.version}-${maven.build.timestamp}</finalName>-->
+		<!--<finalName>sirhws##${maven.build.timestamp}-${project.version}</finalName>-->
+		<finalName>ccas.accueil</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<!--<version>2.2</version>-->
+				<version>2.3</version>
+				<!-- <configuration> <webXml>target/web.xml</webXml> </configuration> -->
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<reportPlugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>2.9</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-jxr-plugin</artifactId>
+							<version>2.3</version>
+							<configuration>
+								<aggregate>true</aggregate>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-report-plugin</artifactId>
+							<version>2.12.4</version>
+						</plugin>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>cobertura-maven-plugin</artifactId>
+							<version>2.5.1</version>
+							<configuration>
+								<formats>
+									<format>xml</format>
+									<format>html</format>
+								</formats>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-checkstyle-plugin</artifactId>
+							<version>2.9.1</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-project-info-reports-plugin</artifactId>
+							<version>2.5.1</version>
+						</plugin>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>taglist-maven-plugin</artifactId>
+							<version>2.4</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-changelog-plugin</artifactId>
+							<version>2.2</version>
+						</plugin>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>findbugs-maven-plugin</artifactId>
+							<version>2.5.2</version>
+						</plugin>
+					</reportPlugins>
+				</configuration>
+			</plugin>			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.8</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pdf-plugin</artifactId>
+				<!-- ne marche pas en 1.1 -->
+				<version>1.0</version>
+				<executions>
+					<execution>
+						<id>pdf</id>
+						<phase>site</phase>
+						<goals>
+							<goal>pdf</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>
+                                ${project.reporting.outputDirectory}
+							</outputDirectory>
+							<aggregate>false</aggregate>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<!--<version>2.3.2</version>-->
+				<version>2.5.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<configuration>
+					<printSummary>false</printSummary>
+					<redirectTestOutputToFile>true</redirectTestOutputToFile>
+					<excludes>
+						<exclude>**/*_Roo_*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
+			<!-- IDE - Note 2.8 does not work with AspectJ aspect path
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.7</version>
+				
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+					<wtpversion>2.0</wtpversion>
+					<additionalBuildcommands>
+						<buildCommand>
+							<name>org.eclipse.ajdt.core.ajbuilder</name>
+							<arguments>
+								<aspectPath>org.springframework.aspects</aspectPath>
+							</arguments>
+						</buildCommand>
+						<buildCommand>
+							<name>org.springframework.ide.eclipse.core.springbuilder</name>
+						</buildCommand>
+					</additionalBuildcommands>
+					<additionalProjectnatures>
+						<projectnature>org.eclipse.ajdt.ui.ajnature</projectnature>
+						<projectnature>com.springsource.sts.roo.core.nature</projectnature>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+				</configuration>
+			</plugin>
+			-->
+			<!--
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-idea-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<dependenciesAsLibraries>true</dependenciesAsLibraries>
+				</configuration>
+			</plugin>
+			-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>8.1.4.v20120524</version>
+				<configuration>
+					<webAppConfig>
+						<contextPath>/${project.name}</contextPath>
+					</webAppConfig>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<webAccessUrl>https://dvlp.site-mairie.noumea.nc:8080/svn/sirh-ws/trunk</webAccessUrl>
+					<anonymousConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</anonymousConnection>
+					<developerConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</developerConnection>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>dependencies</report>
+							<report>project-team</report>
+							<report>mailing-list</report>
+							<report>cim</report>
+							<!-- <report>issue-tracking</report> -->
+							<report>license</report>
+							<report>scm</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<tagListOptions>
+						<tagClasses>
+							<tagClass>
+								<displayName>Todo Work</displayName>
+								<tags>
+									<tag>
+										<matchString>todo</matchString>
+										<matchType>ignoreCase</matchType>
+									</tag>
+									<tag>
+										<matchString>FIXME</matchString>
+										<matchType>exact</matchType>
+									</tag>
+								</tags>
+							</tagClass>
+						</tagClasses>
+					</tagListOptions>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</reporting>
+</project>
