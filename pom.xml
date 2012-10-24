@@ -13,10 +13,10 @@
 
 	<licenses>
 		<license>
-			<name>Licence Boulogne Billancourt</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
 			<distribution>repo</distribution>
-			<comments>A business-friendly OSS license</comments>
+			<comments>Apache License</comments>
 		</license>
 	</licenses>
 
