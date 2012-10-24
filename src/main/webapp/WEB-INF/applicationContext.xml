@@ -87,12 +87,19 @@
 		<property name="dataSource"><ref bean="dataSource"/></property>
 	</bean>
 	
+
+	<!--
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"><value>org.postgresql.Driver</value></property>
-		<!--<property name="url"><value>"jdbc:postgresql:ccas</value></property>-->
 		<property name="url"><value>"jdbc:postgresql://localhost/ccas</value></property>
 		<property name="username"><value>ccas</value></property>
 		<property name="password"><value>ccas</value></property>
+	</bean>
+	-->
+	
+	<!--<jee:jndi-lookup id="dataSource" jndi-name="jdbc/CCAS" resource-ref="true" />-->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/CCAS"/>
 	</bean>
 	
 	<!-- CONFIGURATION HIBERNATE -->
