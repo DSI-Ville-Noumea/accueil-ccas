@@ -117,7 +117,6 @@
 		</init-param>
 
 		<!-- Pour corriger -->
-		
 		<init-param>
 			<param-name>jcifs.smb.client.username</param-name>
 			<param-value>adminwas</param-value>
@@ -144,10 +143,6 @@
 			<param-name>jcifs.util.loglevel</param-name>
 			<param-value>3</param-value>
 		</init-param>
-		
-		
-
-
 	</filter>
 
 	<filter-mapping>
