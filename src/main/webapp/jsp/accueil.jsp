@@ -91,9 +91,7 @@
 													
 													<c:if test="${groupe.enabled}">
 														
-														<!-- CODE SPECIFIQUE POUR LE CCAS.. on affiche pas le libelle de la categorie 2 (redondant avec le groupe -->
-														<c:if test="${categorie.enabled==true }"> 
-														
+
 														<c:if test="${categorie.idCategorie !=2 }">
 															<h6><c:out value="${categorie.libelleCategorie}" /></h6>
 														</c:if>
@@ -109,7 +107,6 @@
 														
 														</c:forEach>
 													</c:if>
-														</c:if>
 													</c:forEach>
 												</td>
 											</c:forEach>
