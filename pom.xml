@@ -108,15 +108,15 @@
 		<url>https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</url>
 	</scm>
 
-	<!--
+	
    <distributionManagement>
         <site>
             <id>sirhWS.website</id>
             <name>SIRH WebServices Website</name>
-            <url>file:\\cristal\dsi$\DSI\PROJETS\1 - EN COURS\2 - Métiers\SIRH\3-Techniques\Documentation_Agile</url>
+            <url>file:\\cristal\dsi$\DSI\PROJETS\1 - EN COURS\2 - Métiers\Accueil-CCAS</url>
         </site>
     </distributionManagement>
-	-->
+	
 
 	<properties>
 		<java.version>6</java.version>
