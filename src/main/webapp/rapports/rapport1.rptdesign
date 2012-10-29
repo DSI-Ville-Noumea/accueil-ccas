@@ -68,12 +68,27 @@
         </scalar-parameter>
     </parameters>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="CCAS_ACCUEIL" id="6">
+        <!--
+		<oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="CCAS_ACCUEIL" id="6">
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
             <property name="odaURL">jdbc:mysql://db8100:3306/accueilccas_prod</property>
             <property name="odaUser">ccas</property>
             <encrypted-property name="odaPassword" encryptionID="base64">Y2Nhcw==</encrypted-property>
         </oda-data-source>
+		-->
+		
+		<oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="CCAS_ACCUEIL" id="6">
+			
+			<!--
+			<property name="odaDriverClass">org.postgresql.Driver</property>
+			<property name="odaURL">jdbc:postgresql://localhost/ccas</property>
+			<property name="odaUser">ccas</property>
+			<encrypted-property name="odaPassword">ccas</encrypted-property>
+			-->
+			
+			<property name="odaJndiName">java:comp/env/jdbc/CCAS</property>
+		</oda-data-source>
+
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FICHES" id="7">

@@ -44,12 +44,15 @@
         </scalar-parameter>
     </parameters>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="CCAS_ACCUEIL" id="6">
+        <!--<oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="CCAS_ACCUEIL" id="6">
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
             <property name="odaURL">jdbc:mysql://db8100:3306/accueilccas_prod</property>
             <property name="odaUser">ccas</property>
             <encrypted-property name="odaPassword" encryptionID="base64">Y2Nhcw==</encrypted-property>
-        </oda-data-source>
+        </oda-data-source>-->
+		<oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="CCAS_ACCUEIL" id="6">
+			<property name="odaJndiName">java:comp/env/jdbc/CCAS</property>
+		</oda-data-source>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FICHES" id="7">
@@ -158,15 +161,27 @@
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
-            <property name="queryText">select Accueil.acc_id, Accueil.acc_date,Accueil.acc_commentaire,
-	   AttributCategorie.att_libelle, Categorie.cat_libelle,TypePublic.pub_libelle, 
-	   TypeReception.rec_libelle,User.login
-from Accueil,AttributCategorie,Categorie,TypeReception,TypePublic,User
-where Accueil.acc_typereception =TypeReception.rec_id
-and Accueil.acc_typereponse =AttributCategorie.att_id
-and Accueil.acc_typepublic = TypePublic.pub_id
-and Categorie.cat_id = AttributCategorie.att_categorie
-and User.id=Accueil.id_agent</property>
+            <property name="queryText">
+				select Accueil.acc_id,
+					Accueil.acc_date,
+					Accueil.acc_commentaire,
+					AttributCategorie.att_libelle,
+					Categorie.cat_libelle,
+					TypePublic.pub_libelle, 
+					TypeReception.rec_libelle,
+					pUser.login
+				from Accueil,
+					AttributCategorie,
+					Categorie,
+					TypeReception,
+					TypePublic,
+					pUser
+				where
+					Accueil.acc_typereception =TypeReception.rec_id
+					and Accueil.acc_typereponse =AttributCategorie.att_id
+					and Accueil.acc_typepublic = TypePublic.pub_id
+					and Categorie.cat_id = AttributCategorie.att_categorie
+					and pUser.id=Accueil.id_agent</property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="RECEPTIONS" id="113">
             <structure name="cachedMetaData">
