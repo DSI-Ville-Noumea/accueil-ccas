@@ -5,7 +5,12 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
 	<display-name>accueilccas</display-name>
-
+	<description>Logiciel de gestion de l'Accueil du CCAS</description>
+	
+	<context-param>
+		<param-name>VERSION</param-name>
+		<param-value>0.4</param-value>
+	</context-param>
 
 
 	<context-param>
