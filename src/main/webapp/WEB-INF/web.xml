@@ -6,7 +6,7 @@
 
 	<display-name>accueilccas</display-name>
 	<description>Logiciel de gestion de l'Accueil du CCAS</description>
-	
+
 	<context-param>
 		<param-name>VERSION</param-name>
 		<param-value>0.4</param-value>
@@ -143,7 +143,7 @@
 			<param-value>false</param-value>
 		</init-param>
 
-		
+
 		<init-param>
 			<param-name>jcifs.util.loglevel</param-name>
 			<param-value>3</param-value>
@@ -177,13 +177,35 @@
 			<param-value>true</param-value>
 		</init-param>
 		<init-param> 
-             <param-name>crossDomainSessionSecurity</param-name> 
-             <param-value>false</param-value>
-       </init-param>
+			<param-name>crossDomainSessionSecurity</param-name> 
+			<param-value>false</param-value>
+		</init-param>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dwr</servlet-name>
 		<url-pattern>/dwr/*</url-pattern>
 	</servlet-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Entire Application</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+
+		<!-- The name of the AD security groups users must be a member of to login -->
+		<auth-constraint>
+			<role-name>*</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<!-- Basic Authentication using a JNDIRealm -->
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>JNDIRealm</realm-name>
+	</login-config>
+
+	<security-role>
+		<role-name>*</role-name>
+	</security-role>
 
 </web-app>
