@@ -40,11 +40,11 @@
 		      		   			<c:forEach items="${users}" var="user">
 		      		   					<c:if test="${user.visible}">
 			      		   					<option value="<c:out value="${user.id}"/>" <c:if test="${user.id==accueil.user.id}">selected</c:if> > 
-												<c:out value="${user.login}"/> 
+												<c:out value="${user.login}"/>
 											</option>
 										</c:if>
 					   			</c:forEach>
-		      			</select> 
+		      			</select>  <a href="javascript:window.close()">Déconnexion</a>
 		     			</spring:bind>
 					</div>
 
@@ -91,7 +91,6 @@
 													
 													<c:if test="${groupe.enabled}">
 														
-
 														<c:if test="${categorie.idCategorie !=2 }">
 															<h6><c:out value="${categorie.libelleCategorie}" /></h6>
 														</c:if>
