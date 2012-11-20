@@ -48,7 +48,7 @@
 			<id>SALAD74</id>
 			<name>Adrien SALES</name>
 			<timezone>-11</timezone>
-			<email>salad74@ville-noumea.nc</email>
+			<email>Adrien.Sales@ville-noumea.nc</email>
 			<url>svpatdi/annuaire/vcards/905131.vcf</url>
 			<roles>
 				<role>Chef de département</role>
@@ -56,6 +56,20 @@
 				<role>Développeur</role>
 			</roles>
 		</developer>
+		
+		<developer>
+			<id>majda76</id>
+			<name>David MAJOREL</name>
+			<timezone>-11</timezone>
+			<email>David.Majorel@ville-noumea.nc</email>
+			<url>svpatdi/annuaire/vcards/905231.vcf</url>
+			<roles>
+				<role>Administrateur Système</role>
+				<role>Administrateur Réseau</role>
+				<role>Architecte Système</role>
+			</roles>
+		</developer>
+		
 	</developers>
 	<contributors>
 		<contributor>
