@@ -128,6 +128,13 @@
 			<param-name>crossDomainSessionSecurity</param-name> 
 			<param-value>false</param-value>
 		</init-param>
+
+		<!-- Requis supporter les reverse proxy-->
+		<init-param>
+			<param-name>overridePath</param-name>
+			<param-value>/dwr</param-value>
+		</init-param>
+
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dwr</servlet-name>
@@ -145,6 +152,15 @@
 			<role-name>*</role-name>
 		</auth-constraint>
 	</security-constraint>
+
+	<!-- Exclusion du fichier de ping (Health Check) pour le Reverse Proxy-->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Fichier version.jsp</web-resource-name>
+			<url-pattern>/version.jsp</url-pattern>
+		</web-resource-collection>
+	</security-constraint>
+
 
 	<!-- Basic Authentication using a JNDIRealm -->
 	<login-config>
