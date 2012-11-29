@@ -17,7 +17,10 @@
 <hr/>
 <pre>
 <%
-exception.printStackTrace(new java.io.PrintWriter(out));
+if(exception.getMessage().contains("IndexOutOfBoundsException"))
+	out.write("<center><h4>UTILISATEUR NON AUTHORISE</h4>");
+else
+	exception.printStackTrace(new java.io.PrintWriter(out));
 %>
 </pre>
 
