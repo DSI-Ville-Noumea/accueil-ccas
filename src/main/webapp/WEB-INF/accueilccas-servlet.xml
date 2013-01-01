@@ -45,6 +45,11 @@
 		<property name="userProperty"><ref bean="UserProperty"/></property>
 		<property name="validator"><ref bean="AccueilValidator"/></property>
 	</bean>
+	
+	<bean name="decoController" class="accueilccas.web.controllers.DeconnexionController">           
+    </bean>
+
+	
 	<bean id="AccueilValidator" class="accueilccas.web.validators.AccueilValidator"/>
 	<bean id="TypePublicProperty" class="accueilccas.web.editors.TypePublicProperty">
 		<property name="typepublicManager"><ref bean="TypePublicManager"/></property>
@@ -125,6 +130,7 @@
 				<prop key="/adminuser.do">adminuserController</prop>
 				<prop key="/adminrapport.do">adminrapportController</prop>
 				<prop key="/adminuploadrapport.do">adminuploadrapportController</prop>
+				<prop key="/deco.do">decoController</prop>
             </props>
         </property>
     </bean>
