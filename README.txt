@@ -1,1 +1,1 @@
-Lancer une fois (dépendance qui n'est plus trouvable sur la repo central Maven), mais nécessaire au build du war :mvn install:install-file -Dfile=lib/gnujaxp-1.0.0.jar -DgroupId=gnujaxp -DartifactId=gnujaxp -Dversion=1.0.0 -Dpackaging=jar -DgeneratePom=true
+Lancer une fois (dépendance qui n'est plus trouvable sur la repo central Maven), mais nécessaire au build du war :mvn install:install-file -Dfile=lib/asystan-common-1.0.jar -DgroupId=asystan -DartifactId=asystan-common -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
