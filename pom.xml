@@ -20,15 +20,15 @@
 		</license>
 	</licenses>
 
-<repositories>
+	<repositories>
 
-	<!-- Ajout de la repo pour dwr opur avoir le tout dernier build -->
-    <repository>
-      <id>oss-sonatype-snapshots</id>
-      <name>OSS Sonatype Snapshots Repository</name>
-	  <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-  </repositories>
+		<!-- Ajout de la repo pour dwr opur avoir le tout dernier build -->
+		<repository>
+			<id>oss-sonatype-snapshots</id>
+			<name>OSS Sonatype Snapshots Repository</name>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
 
 
 	<developers>
@@ -56,7 +56,7 @@
 				<role>Développeur</role>
 			</roles>
 		</developer>
-		
+
 		<developer>
 			<id>majda76</id>
 			<name>David MAJOREL</name>
@@ -69,7 +69,7 @@
 				<role>Architecte Système</role>
 			</roles>
 		</developer>
-		
+
 	</developers>
 	<contributors>
 		<contributor>
@@ -130,15 +130,15 @@
 		<url>https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</url>
 	</scm>
 
-	
-   <distributionManagement>
-        <site>
-            <id>sirhWS.website</id>
-            <name>SIRH WebServices Website</name>
-            <url>file:\\cristal\dsi$\DSI\PROJETS\1 - EN COURS\2 - Métiers\Accueil-CCAS</url>
-        </site>
-    </distributionManagement>
-	
+
+	<distributionManagement>
+		<site>
+			<id>sirhWS.website</id>
+			<name>SIRH WebServices Website</name>
+			<url>file:\\cristal\dsi$\DSI\PROJETS\1 - EN COURS\2 - Métiers\Accueil-CCAS</url>
+		</site>
+	</distributionManagement>
+
 
 	<properties>
 		<java.version>6</java.version>
@@ -307,33 +307,27 @@
 			<version>3.0.M1</version>
 		</dependency>
 		-->
-		
-		
+
+
 		<dependency>
 			<groupId>org.directwebremoting</groupId>
 			<artifactId>dwr</artifactId>
 			<version>3.0.0-rc3-SNAPSHOT</version>
 		</dependency>
 
-		 <dependency>
-		<!-- Optional non-CLA components see DWR documentation for details -->
+		<dependency>
+			<!-- Optional non-CLA components see DWR documentation for details -->
 			<groupId>org.directwebremoting</groupId>
 			<artifactId>dwr</artifactId>
 			<classifier>noncla</classifier>
 			<version>3.0.0-rc3-SNAPSHOT</version>
-		 </dependency>
-  
-		
+		</dependency>
 
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
 		</dependency>
-
-        </dependency>
-
-
 
 	</dependencies>
 	<build>
