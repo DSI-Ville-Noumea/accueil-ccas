@@ -46,7 +46,7 @@ function chooseStyle(styletitle, id){ //Interface function to switch style sheet
 		setStylesheet(styletitle);
 			UserManager.getUserById(id,function(data)
 			{
-				user = {id : data.id, css : styletitle,login:data.login,admin:data.admin};
+				user = {id : data.id, css : styletitle,login:data.login,admin:data.admin,visible:data.visible};
 				UserManager.saveUser(user);
 			}
 		);
