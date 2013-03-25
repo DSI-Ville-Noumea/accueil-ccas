@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Accueil CCAS"
+    basedir="."
+    default="pom.load"
+    xmlns:artifact="antlib:org.apache.maven.artifact.ant"
+    >
+
+	<property name="work" location="work"/>
+	<property name="birt.version" location="4_2_2"/>
+
+	<!-- Add Maven Ant Tasks -->
+	<path id="maven-ant-tasks.classpath" path="lib/maven-ant-tasks-2.1.3.jar" />
+	<typedef resource="org/apache/maven/artifact/ant/antlib.xml"
+             uri="antlib:org.apache.maven.artifact.ant"
+             classpathref="maven-ant-tasks.classpath" />
+
+	<!-- Loads pom in ant -->
+	<target name = "pom.load">
+		<artifact:pom id="pom" file="pom.xml" />
+		<echo>Accueil CCAS version : ${pom.version}</echo>
+	</target>
+	
+	<target name="clean" depends="pom.load">
+		<!-- Create dir if it does not exist -->
+		<delete dir="${work}"/>
+		<mkdir dir="${work}"/>
+	</target>
+
+
+<!-- Birt centric tasks -->
+	<target name = "birt.war.prepare" depends="pom.load">
+		<!-- input birt-runtime zip file birt-runtime-4_2_2.zip -->
+		<input message="Birt Runtimme zip path (eg birt-runtime-${version}.zip) " addproperty="birt-runtime-path"/>
+
+		
+		<!-- copy file in work dir-->
+		<unzip src="${birt-runtime-path}" dest="${work}">
+			<patternset>
+				<include name="**/birt.war"/>
+			</patternset>
+			<mapper type="flatten"/>
+		</unzip>
+
+		<echo>filename : ${birt-filename}</echo>
+		<move file="${work}/birt.war" tofile="${work}/birt-accueil-ccas##${pom.version}.war"/>
+	</target>
+
+	
+	<target name="birt.war.reports.add" depends="birt.war.prepare">
+			<zip destfile="${work}/birt-accueil-ccas##${pom.version}.war" basedir="src/main/webapp/rapports" update="true" />
+	</target>
+	
+	<target name="birt.war" depends="birt.war.reports.add" description = "Prepare a packaged birt war with accueil ccas reports packaged inside (needs official birt-runtime-*.zip).">
+			<zip destfile="${work}/birt-accueil-ccas##${pom.version}.war" basedir="src/main/webapp/rapports" update="true" />
+	</target>
+	
+	
+</project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
