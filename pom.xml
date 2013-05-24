@@ -5,7 +5,7 @@
 	<artifactId>ccas</artifactId>
 	<packaging>war</packaging>
 	<name>Accueil CCAS</name>
-	<version>0.7</version>	
+	<version>0.8</version>	
 	<organization>
 		<name>Mairie de Nouméa</name>
 		<url>http://www.ville-noumea.nc</url>
