@@ -153,7 +153,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>6.0.36</version>
+			<version>6.0.37</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -163,7 +163,7 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>jasper</artifactId>
-			<version>6.0.36</version>
+			<version>6.0.37</version>
 			<!-- Ajout de l'exclusion pour etre compatible Tomcat 7 -->
 			<exclusions>
 				<exclusion>
