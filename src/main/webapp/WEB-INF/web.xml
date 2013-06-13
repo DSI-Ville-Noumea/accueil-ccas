@@ -9,7 +9,7 @@
 
 	<context-param>
 		<param-name>VERSION</param-name>
-		<param-value>0.8</param-value>
+		<param-value>0.9</param-value>
 	</context-param>
 
 
