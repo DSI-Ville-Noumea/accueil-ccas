@@ -20,11 +20,6 @@ public class TestBirstReports extends CommonCCASTest{
     
     @Test
     public void testNombreDeDemandesParJourEtHeure(){
-        //WebElement statsPage = driver.
-        //driver.findElement(By.partialLinkText("Stat générales")).click();
-        //driver.findElement(By.partialLinkText("Stat générales")).;
-        //driver.findElement(By.xpath("//*[@id=\"menu\"]/ul/li[3]/a")).click();
-        //driver.get("http://salad74:XXX@accueil.ccas.site-mairie.noumea.nc");
         driver.get(conf.getString("url"));
         // click on stats generales
         driver.findElement(By.partialLinkText("générales")).click();
@@ -49,6 +44,8 @@ public class TestBirstReports extends CommonCCASTest{
 //            Logger.getLogger(TestBirstReports.class.getName()).log(Level.SEVERE, null, ex);
 //        }
         saveScreenshot();
+        
+        // tester que la page n'est pas sur une session expirée : [The viewing session is not available or has expired.]
                              try {
             Thread.sleep(2000);
         } catch (InterruptedException ex) {
@@ -61,7 +58,6 @@ public class TestBirstReports extends CommonCCASTest{
             Logger.getLogger(TestBirstReports.class.getName()).log(Level.SEVERE, null, ex);
         }   
         saveScreenshot();
-        //driver.getPageSource().c
         //assertEquals("The page title should equal [Accueil] at the start of the test.", "Accueil", driver.getPageSource().con);
         //driver.navigate().refresh();
         assertEquals("Le rapport devrait avoir pour titre \"Nombre de demandes par jour et heure\"", true, driver.getPageSource().contains("Nombre de demandes par jour et heure"));
