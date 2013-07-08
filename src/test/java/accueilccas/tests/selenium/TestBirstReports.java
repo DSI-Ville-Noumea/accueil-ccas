@@ -52,6 +52,7 @@ public class TestBirstReports extends CommonCCASTest{
             Logger.getLogger(TestBirstReports.class.getName()).log(Level.SEVERE, null, ex);
         } 
         driver.findElement(By.xpath("//*[@id=\"parameterDialogokButton\"]/input")).click();
+        
                      try {
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
@@ -60,6 +61,7 @@ public class TestBirstReports extends CommonCCASTest{
         saveScreenshot();
         //assertEquals("The page title should equal [Accueil] at the start of the test.", "Accueil", driver.getPageSource().con);
         //driver.navigate().refresh();
+        
         assertEquals("Le rapport devrait avoir pour titre \"Nombre de demandes par jour et heure\"", true, driver.getPageSource().contains("Nombre de demandes par jour et heure"));
         assertEquals("Problème de locale : le navigateur doit être en français, format de date DD/MM/YYYY", false, driver.getPageSource().contains("is invalid with the type \"date\""));
         
