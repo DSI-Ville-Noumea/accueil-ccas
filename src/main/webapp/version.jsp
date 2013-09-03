@@ -1,3 +1,4 @@
+<%@page contentType="text/plain;charset=UTF-8"%>
 <%@page import="java.net.InetAddress"%>
 ccas.accueil.version=<%=this.getServletContext().getInitParameter("VERSION")%><br/>
 ccas.accueil.tomcat.version=<%= application.getServerInfo() %><br/>
@@ -18,7 +19,6 @@ tomcat.version : <%= application.getServerInfo() %><br>
 		synchronized (theSession) {
 			// invalidating a session destroys it
 			theSession.invalidate();
-			//pw.println( "<BR>Session destroyed" );
 		}
 	}
 %>
