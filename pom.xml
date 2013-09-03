@@ -500,9 +500,9 @@
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>2.7</version>
                 <configuration>
-                    <webAccessUrl>https://dvlp.site-mairie.noumea.nc:8080/svn/sirh-ws/trunk</webAccessUrl>
-                    <anonymousConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</anonymousConnection>
-                    <developerConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</developerConnection>
+                    <webAccessUrl>https://svn.ville-noumea.nc/sed/accueil-ccas/trunk</webAccessUrl>
+                    <anonymousConnection>scm:svn:https://svn.ville-noumea.nc/sed/accueil-ccas/trunk</anonymousConnection>
+                    <developerConnection>scm:svn:https://svn.ville-noumea.nc/sed/accueil-ccas/trunk</developerConnection>
                 </configuration>
                 <reportSets>
                     <reportSet>
