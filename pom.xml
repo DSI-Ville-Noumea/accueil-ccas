@@ -403,6 +403,8 @@
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-project-info-reports-plugin</artifactId>
+                            <!-- Pour l'instant, pas d'upgrade en 2.7 : ca prend beaucoup trop de temps, la
+                            génération de site reste bloquée. -->
                             <version>2.6</version>
                         </plugin>
                         <plugin>
