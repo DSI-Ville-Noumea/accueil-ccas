@@ -125,9 +125,9 @@
     -->
 
     <scm>
-        <connection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</connection>
-        <developerConnection>scm:svn:https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</developerConnection>
-        <url>https://dvlp.site-mairie.noumea.nc:8080/svn/accueil-ccas/trunk</url>
+        <connection>scm:svn:https://svn.ville-noumea.nc/sed/accueil-ccas/trunk</connection>
+        <developerConnection>scm:svn:https://svn.ville-noumea.nc/sed/accueil-ccas/trunk</developerConnection>
+        <url>https://svn.ville-noumea.nc/sed/accueil-ccas/trunk</url>
     </scm>
 
 
