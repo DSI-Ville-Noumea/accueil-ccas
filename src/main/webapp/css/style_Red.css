@@ -308,11 +308,12 @@ padding: 0.25em 0.25em 0.25em 0.25em;
 	#secondaryContent_2columns
 	{
 	float: right;
+	width: 70%;
 	}
 	
 	#columnC_2columns
 	{
-	width: 70%;
+	width: 100%;
 	float: left;
 	padding: 0em 0em 0.5em 2em;
 	border-left: dotted 1px #E1E1E1;
