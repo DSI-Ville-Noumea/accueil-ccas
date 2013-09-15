@@ -78,6 +78,7 @@
             </div>
         </div><!-- fin de la colonne gauche -->
 
+        <!-- Début de la Colonne de droite -->
         <div id="secondaryContent_2columns">
             <div id="columnC_2columns">						
                 <h4>R&eacute;ponse</h4>
