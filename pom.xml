@@ -135,7 +135,7 @@
         <site>
             <id>sirhWS.website</id>
             <name>SIRH WebServices Website</name>
-            <url>file:\\cristal\dsi$\DSI\PROJETS\1 - EN COURS\2 - Métiers\Accueil-CCAS</url>
+            <url>file:\\cristal\DSI$\DSI\PROJETS\doxia\${project.name}</url>
         </site>
     </distributionManagement>
 
