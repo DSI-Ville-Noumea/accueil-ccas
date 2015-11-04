@@ -18,7 +18,7 @@
 <div align="right">
 				<a href="admin.do">Administration des réponses</a> &nbsp;
 				<a href="adminuser.do">Administration des utilisateurs</a> &nbsp;
-				<a href="adminrapport.do">Administration des rapports</a><br>
+				<!-- <a href="adminrapport.do">Administration des rapports</a><br> -->
 				<br/>
 	</div>
 
@@ -637,11 +637,12 @@ jQuery(document).ready(function() {
 </script>
 
 <!-- Type de réception -->
-
+<!--  
 <br/>
 				Declarer un probleme en cliquant <a href='http://svn/trac/accueilccas/newticket'>ICI</a><br/>
 				Consulter la liste des tickets en cours <a href='http://svn/trac/accueilccas/report/1'> ICI </a>
 <br />
+-->
 
 <!-- Réceptions -->
 <h4 class="banniere">Gestion des types de reception</h4>

@@ -11,7 +11,7 @@
 <div align="right">
 				<a href="admin.do">Administration des réponses</a> &nbsp;
 				<a href="adminuser.do">Administration des utilisateurs</a> &nbsp;
-				<a href="adminrapport.do">Administration des rapports</a><br>
+				<!-- <a href="adminrapport.do">Administration des rapports</a><br> -->
 </div>
 
 <h3 class="banniere">Administration des utilisateurs</h3>
