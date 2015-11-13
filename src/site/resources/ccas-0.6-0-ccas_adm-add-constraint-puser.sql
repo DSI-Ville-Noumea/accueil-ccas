@@ -1,0 +1,1 @@
+alter TABLE puser add constraint UK_LOGIN unique (login);

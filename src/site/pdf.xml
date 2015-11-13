@@ -1,0 +1,94 @@
+<document xmlns="http://maven.apache.org/DOCUMENT/1.0.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/DOCUMENT/1.0.1 http://maven.apache.org/xsd/document-1.0.1.xsd"
+  outputName="doc-eatal">
+
+  <meta>
+    <title>Accueil CCAS</title>
+      <author/>
+    <authors>
+		  <author>
+			<firstName>Adrien</firstName>
+			<lastName>Sales</lastName>
+			<name>salad74</name>
+			<initials>AS</initials>
+			<title>Chef de Département</title>
+			<position/>
+			<email>Adrien.Sales@ville-noumea.nc</email>
+			<phoneNumber/>
+			<faxNumber/>
+			<companyName>Mairie de Nouméa</companyName>
+			<street/>
+			<city>Nouméa</city>
+			<postalCode>98800</postalCode>
+			<country>Nouvelle-Calédonie</country>
+			<state>Province-Sud</state>
+		  </author>
+    </authors>
+	
+	<subject>Documentation technique Outils eAtal</subject>
+    <keywords>eatal business objects exploitation reporting mysql oracle</keywords>
+    
+    
+	<pageSize/>
+    <generator/>
+    <description>Ceci est la documentation technique permettant à la fois d'installer, de compiler et d'exploiter Accueil CCAS de manière intégrée.</description>
+    <initialCreator>Adrien Sales</initialCreator>
+    <creator>Adrien Sales</creator>
+    <printedBy/>
+    <creationDate>2012-03-29T09:00:00.00</creationDate>
+	<language>fr-FR</language>
+	<confidential/>
+    <draft>true</draft>
+
+  </meta>
+  
+  
+  
+
+  <toc name="Table of Contents">
+    <item name="A propos" ref="about.apt"/>
+	
+	<item name="Installation" ref="install.apt"/>
+    <item name="Utilisation" ref="manuel.apt"/>
+	<item name="FAQ" ref="faq-sie.fml"/>
+	
+    
+    <!--
+	<item name="Usage" ref="usage.apt.vm"/>
+    <item name="Filtering Document Descriptor" ref="examples/filtering.apt"/>
+    <item name="Configuring Reports" ref="/examples/configuring-reports.xml.vm"/>
+    <item name="Limitations" ref="limitations.apt"/>
+    <item name="FAQ" ref="faq.fml"/>
+	-->
+  </toc>
+
+  <cover>
+    <coverTitle>${project.name}</coverTitle>
+    <coverSubTitle>v. ${project.version}</coverSubTitle>
+    <coverType>Manuel UAccueil CCAS</coverType>
+    <projectName>${project.name}</projectName>
+    <!--<projectLogo>http://svpatdi/annuaire/photos/DCCB.jpg</projectLogo>-->
+    <companyName>Mairie de Noumea, DSI-SED</companyName>
+    <companyLogo>http://svpsp/dsi/PublishingImages/DSI-logo-ext.png</companyLogo>
+	<authors>
+		  <author>
+			<firstName>Adrien</firstName>
+			<lastName>Sales</lastName>
+			<name>salad74</name>
+			<initials>AS</initials>
+			<title>Chef de Département</title>
+			<position/>
+			<email>Adrien.Sales@ville-noumea.nc</email>
+			<phoneNumber/>
+			<faxNumber/>
+			<companyName>Mairie de Nouméa</companyName>
+			<street/>
+			<city>Nouméa</city>
+			<postalCode>98800</postalCode>
+			<country>Nouvelle-Calédonie</country>
+			<state>Province-Sud</state>
+		  </author>
+    </authors>
+  </cover>
+</document>
