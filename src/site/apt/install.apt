@@ -1,0 +1,274 @@
+﻿Guide d'installation
+
+* Introduction
+
+	Ci-dessous sont décrites les étapes pour faire tourner l'application, <<côté serveur>>.
+La documentation rédigée considère que l'on est sous Linux, mais cela marche également
+sous Windows, seuls quelques scripts devront être adaptés.
+
+* Pré-requis - Logiciels/Composants standards
+
+*---------------------*-------------------------*--------------------------------------------------------------------------------------------------------------------------------:
+| <<Composant>>       | <<Versions supportées>> | <<Documentation>>                                                                                                              |
+*---------------------*-------------------------*--------------------------------------------------------------------------------------------------------------------------------:
+| Sun/Oracle java SDK | 1.8                     | {{{http://www.oracle.com/technetwork/java/javase/downloads/index.html} Java SE}}                                               |
+*---------------------*-------------------------*--------------------------------------------------------------------------------------------------------------------------------:
+| Tomcat              | <= 7.0.30 ou >=7.0.33 (<<en aucun cas 7.0.32>>, cf {{{https://issues.apache.org/bugzilla/show_bug.cgi?id=53986}Bugzilla no. 53986}}  ) 		            |  Installation valide de {{{http://tomcat.apache.org/tomcat-7.0-doc/setup.html} Tomcat}}                                        |
+*---------------------*-------------------------*--------------------------------------------------------------------------------------------------------------------------------:
+| Postgres            | >= 9.2.x, >= 9.3.x      |  {{{http://www.postgresql.org/}Postgres}} : installation valide, cf {{{http://docs.postgresqlfr.org/9.3/} voir doc officielle}}|
+*---------------------*-------------------------*--------------------------------------------------------------------------------------------------------------------------------:
+| Birt                | >= 4.2.x (compatible 3.7.2)  et >= 4.3.x (passer Tomcat en mode Djava.awt.headless)              |  {{{http://www.eclipse.org/birt/phoenix/}BIRT Project}}                                                                        |
+*---------------------*-------------------------*--------------------------------------------------------------------------------------------------------------------------------:
+
+
+
+
+* Configuration de Tomcat
+
+
+	[[1]] Installer le driver de Postgres
+
+	  Pour cela :
+
++------------------------------------------------------
+cd
+wget http://jdbc.postgresql.org/download/postgresql-9.3-1104-jdbc41.jar
+ls -ltr
+cp postgresql-9.3-1104-jdbc41.jar $CATALINA_HOME/lib
++------------------------------------------------------
+
+	ou télécharger manuellement sur le site officiel du driver jdbc de Postgres : {{{http://jdbc.postgresql.org/download.html}http://jdbc.postgresql.org/download.html}}.
+
+	[[2]] Configuration du context original de Tomcat
+
+	  <<Workaround>> : Pour des raisons de compatibilité entre {{{http://directwebremoting.org/dwr/index.html}DWR}} et Tomcat 7 (<<Resolving DWR "CSRF Security Error" popups>>) , il faut modfier le context de Tomcat
+	  comme suit  et setter <<useHttpOnly à false >> :
+
+	  Remplacer
+
++------------------------------------------------------
+<Context>
++------------------------------------------------------
+
+	  par
+
++------------------------------------------------------
+<Context useHttpOnly="false" sessionCookiePath="/">
++------------------------------------------------------
+
+	Un {{{./context.xml}exemple de context minimal est fourni ici}}, ce dernier inclut le Workaround pour <<useHttpOnly>> ainsi que la configuration du datasource Base de données requis.
+
+	[[3]] Modification du setenv.sh (options) de Tomcat
+
+	Afin de gérer l'affichage de graphiques dans <<BIRT 4.3>> (pas nécessaire sur les BIRT 4.2.*), il faut que Tomcat tourne en mode <<headless>>, pour cela, rajouter les lignes ci-dessous au fichier setenv.sh ($CATALINA_HOME/bin/setenv.sh) :
+
++------------------------------------------------------
+export JAVA_OPTS="$JAVA_OPTS -Djava.awt.headless=true"
++------------------------------------------------------
+
+* Installation de la base de données
+
+	On suppose que le Cluster (instance vide) postgres existe déja, <à priori sur un serveur autre que celui utilisé par Tomcat>.
+
+	Le seul pré-requis de cette étape est de disposer d'un shell ou plus généralement de l'<<interpréteur de commande Postgres natif : psql, et
+	de pouvoir se connecter en tant que l'utilisateur postgres>>.
+
+	Les étapes détaillées ci-dessous donnent les étapes à suivre pour aboutir à une <<installation totalement sécurisée>> sous Postgres.
+
+
+	Tout d'abord, création des utilisateurs :
+
+		* <<ccas_adm>> : utilisateur qui a le droit de créer les tables, des séquences, dropper des tables, ajouter/dropper des colonnes ... C'est à lui
+			qu'appartiennent tous les objets de la base de données
+
+		* <<ccas_usr>> : c'est le user applicatif, celui à configurer dans le <<datasource de l'application>>, au sein
+			du <<context>> Tomcat. Il a le droit d'écrire dans les tables, mais en aucun cas de modifier la
+			structure des tables (<<et encore moins de les dropper>>). Ceu utilisateur de possède rien, uniquement
+			le droit d'utiliser les tables de <<ccas_adm>>
+
+		* <<ccas_read>> : ce user n'a <<que le droit de lire>> (pas d'insert/update/delete) le contenu des tables. Il est
+			utile par exemple pour faire du reporting (par exemple dans notre cas <<pour les reports BIRT>>
+
+
+	Script de création des utilisateurs et de la base de données <<ccas>> :
+
++------------------------------------------------------
+createuser --no-createdb --encrypted --no-createrole --no-superuser ccas_adm
+createuser --no-createdb --encrypted --no-createrole --no-superuser ccas_usr
+createuser --no-createdb --encrypted --no-createrole --no-superuser ccas_read
+createdb --encoding=UTF8 ccas
++------------------------------------------------------
+
+	Télécharger les fichiers suivants dans un répertoire de votre choix :
+
+	* Création du schéma : {{{./ccas-0.3.0-01-postgres-create_schema.sql}ccas-0.3.0-01-postgres-create_schema.sql}}
+
+	* Droits sur les schémas, changement des mots de passe : {{{./ccas-0.3.0-02-postgres-alter_user.sql}ccas-0.3.0-02-postgres-alter_user.sql}}
+
+	* Création des tables : {{{./ccas-0.3.0-03-ccas_adm-create_table.sql}ccas-0.3.0-03-ccas_adm-create_table.sql}}
+
+	* Privilèges sur les tables (GRANTS) : {{{./ccas-0.3.0-04-ccas_adm-grant.sql}ccas-0.3.0-04-ccas_adm-grant.sql}}
+
+
+	Esnuite, depuis ce répertoire, passer les commandes suivantes :
+
++------------------------------------------------------
+psql --dbname=ccas -f ./ccas-0.3.0-01-postgres-create_schema.sql
+psql --dbname=ccas -f ./ccas-0.3.0-02-postgres-alter_user.sql
+psql --dbname=ccas --username=ccas_adm -f ./ccas-0.3.0-03-ccas_adm-create_table.sql
+psql --dbname=ccas --username=ccas_adm -f ./ccas-0.3.0-04-ccas_adm-grant.sql
++------------------------------------------------------
+
+	A ce stade, <<la création de la base de données CCAS est terminée>>.
+
+
+
+* Modification de la connexion au domaine Windows
+
+	Pour cela, il faut modifier le fichier <<server.xml>> du serveur
+	Tomcat ({{{http://tomcat.apache.org/tomcat-7.0-doc/realm-howto.html#JNDIRealm}configuration Tomcat du JNDIRealm}}),
+	en <<ajoutant directement sous la balise Engine>> :
+
+
+
++------------------------------------------------------
+<!-- TRES IMPORTANT : le referrals="follow" est nécessaire pour parcourir la liste des groupes
+dans plusieurs OU de meme niveau
+-->
+      <Realm   className="org.apache.catalina.realm.JNDIRealm"
+        connectionURL="ldap://SERVEUR_DOMAINE_1:389"
+        alternateURL="ldap://SERVEUR_DOMAINE_1:389"
+        connectionName="LOGIN_USER_HABILITE_NAVIGUER_AD@site-mairie.noumea.nc"
+        connectionPassword="MDP_USER_HABILITE_NAVIGUER_AD"
+        userBase="ou=Z-Users,dc=site-mairie,dc=noumea,dc=nc"
+        userSubtree="true"
+        userSearch="(sAMAccountName={0})"
+        roleBase="dc=site-mairie,dc=noumea,dc=nc"
+        roleName="name"
+        roleSubtree="true"
+        roleSearch="(member={0})"
+        referrals="follow"
+        />
+
++------------------------------------------------------
+
+
+
+* Déploiement de l'application
+
+		Configurer le datasource (cf {{{./context.xml}context.xml}} plus haut).
+		Tester la connexion en client/serveur depuis le serveur d'application si possible.
+		Dropper le war produit ($PROJECT_HOME/target/) sur Tomcat (copier le war dans <<$CATALINA_HOME>>/webapps
+
+		<<Attention, un build du war est nécessaire pour prendre en compte les modifications opérées sur le web.xml pour l'authentification sur le domaine (jcifs, cf section précédente)>>.
+
+
+* Installation de BIRT (BIRT viewer)
+
+		BIRT est un  système permettant de faire du reporting, plus d'informations sur le {{site officiel}http://www.eclipse.org/birt/phoenix/intro/}}.
+
+		Un certain nombre de rapports BIRTS sont livrés d'origine avec l'application. Voici les étapes à suivre pour installer le visualisateur de rapports. Dans un environnement de Production,
+		il est préférable de disposer d'un serveur Tomcat dédié au visualiseur de rapports.
+
+
+		Pour commencer, installer de BirtViewer, aussi appelé Birt Runtime. Le tutoriel a été testé avec la dernière version dispooble à ce jour, à savoir : <<birt-runtime-4_4_0.zip>>,
+		téléchargeable ici : {{{http://download.eclipse.org/birt/downloads/}}}, section {{{Latest BIRT Runtime Release}http://www.eclipse.org/downloads/download.php?file=/birt/downloads/drops/R-R1-4_4_0-201406111043/birt-runtime-4_4_0-20140611.zip}}, Build: 4.4.0.
+
+		Installer ensuite le BirtViewer sur Tomcat :
+
++------------------------------------------------------
+cd
+mkdir tmp
+cp birt-runtime-4_4_0-20140611.zip ./tmp
+cd tmp
+unzip birt-runtime-4_4_0-20140611.zip
+cd birt-runtime-4_4_0
+cp birt.war $CATALINA_HOME/webapps/birt##4.4.0.war
++------------------------------------------------------
+
+		<<Le nom Jndi jdbc/CCAS doit configuré dans  le conetxt Tomcat>> pour se connecter à la base CCAS (cf {{{./context.xml}context.xml}}
+
+
+		A ce stade, BIRT viewer est installé mais nous n'avons aucun rapport custom déployé, cela est fait dans l'étape suivante.
+
+
+* Déploiement des rapports BIRT de CCAS
+
+		Les rapports BIRT font partie de l'application CCAS. Il sont trouvables dans le source code sous <<src/main/webapp/rapports>>, ou peuvent être récupérés dans le war :
+
+		* directement dans la version déployée de ccas sous $CATALINA_HOME/webapps/ccas/rapports
+
+		* en dézippant le war de l'application ccas :
+
++------------------------------------------------------
+cd
+cp ccas.accueil.war ./tmp
+cd ./tmp
+unzip ccas.accueil.war
+cd rapports
+ls -la
++------------------------------------------------------
+
+	Il faut ensuite déployer les rapports sur le Tomcat dédié aux reports BIRT. Pour cela, simplement copier les fichiers <<rptdesign>> dans le répertoire de la WebApp birt, par exemple :
+
++------------------------------------------------------
+cd ; cd tmp
+cd rapports
+cp *.rptdesign $CATALINA_HOME/webapps/birt
++------------------------------------------------------
+
+	A ce stade les reports sont déployés, il ne reste plus qu'à les tester en y accédant.
+
+
+	Modèle d'url :
+
+------------------------------------------------------
+http://{$TOMCAT_IP}:{TOMCAT_POST}/birt/frameset?__report={$REPORT_NAME}
+------------------------------------------------------
+
+	Par exemple :
+
+------------------------------------------------------
+http://localhost:8080/birt/frameset?__report=rapport1.rptdesign
+------------------------------------------------------
+
+	Une fois l'url vérifiée (et le rapport validé), alors il faut le configurer dans la liste des rapports de l'application (<<remplacer IP et port avec les bonnes valeurs>>):
+
++-----------------------------------------------------------------------
+-- ne pas modifier les inserts des rapports
+--
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Nombre de demandes par jour et heure', 'Nombre de demandes par jour et heure', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport1.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Nombre de demandes par jour de la semaine ', 'Nombre de demandes par jour de la semaine ', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport2.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Nombre de dem. par jour pour une periode donnee', 'Nombre de demandes par jour pour une periode donnee', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport3.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Nombre de demandes par type de public', 'Nombre de demandes par type de public', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport4.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Nombre de demandes par type de reponse', 'Nombre de demandes par type de reponse', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport5.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Nb. de demande par type de reponse/public', 'Nombre de demande par type de reponse et selon le public', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport6.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Nombre de demandes par mois pour une annee', 'Nombre de demandes par mois pour une annee', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport7.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Nombre de demandes par type de reception/public', 'Nombre de demandes par type de reception et de public ', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport8.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Liste des commentaires', 'Liste des commentaires', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport9.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Tableau Global pour une periode', 'Tableau Global pour une periode', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport10.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Nombre de dossiers saisis par agent', 'Nombre de dossiers saisis par agent', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport11.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Dossiers, date a date', 'Dossiers, date a date', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport12.rptdesign');
+INSERT INTO Rapports (titre, "desc", url)
+VALUES ('Rapport de frequentation', 'Rapport de frequentation', 'http://HOSTNAME:PORT/birt/frameset?__report=rapport13.rptdesign');
+
+select * from rapports;
+
+-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- Remplacer avec de vraies valeurs (HOSTNAME et PORT)
+-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+update rapports set url = replace(url, 'HOSTNAME:PORT', 'localhost:8080');
+select * from rapports;
++-----------------------------------------------------------------------

@@ -1,0 +1,47 @@
+
+<project name="Accueil CCAS">
+    <publishDate position="right"/>
+    <version position="right"/>
+
+    <body>
+        <links>
+            <!--<item name="Référence APT" href="references/format.html"/>-->
+            <item name="Mairie Boulogne-Billancouert" href="http://www.boulognebillancourt.com/cms/index.php"/>
+            
+            <item name="Mairie de Nouméa" href="http://www.ville-noumea.nc/"/>
+			
+        </links>
+
+        <!--
+        <breadcrumbs>
+            <item name="Accueil" href="index.html"/>
+        </breadcrumbs>
+        -->
+		<menu name="A propos">
+            <!--<item name="Pré-requis" href="prerequ.html"/>-->
+            <item name="Présentation" href="about.html"/>
+        </menu>
+		
+		
+         
+        <menu name="Exploitation">
+            <!--<item name="Pré-requis" href="prerequ.html"/>-->
+            <item name="Installation" href="install.html"/>
+			
+        </menu>
+		
+		
+        <menu name="Développement">
+            <item name="Build" href="build.html"/>
+			
+        </menu>
+		
+		
+		<menu name="FAQ">
+            <item name="Questions fréquentes" href="faq.html"/>
+        </menu>
+		
+
+        <menu ref="reports"/>
+    </body>
+</project>

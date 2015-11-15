@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+ 
+	 
+	<!-- GESTION DES MESSAGES -->
+ 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+        	<value>messages</value>
+        </property>
+    </bean>
+	 
+    <!-- Beans SERVICES -->
+    <bean id="AccueilManager" class="accueilccas.services.impl.AccueilManagerImpl">
+		<property name="accueildao"><ref local="AccueilDAO" /></property>
+    </bean>
+    <bean id="CategorieManager" class="accueilccas.services.impl.CategorieManagerImpl">
+		<property name="categoriedao"><ref local="CategorieDAO" /></property>
+		<property name="groupedao"><ref local="GroupeDAO" /></property>
+    </bean>
+     <bean id="TypePublicManager" class="accueilccas.services.impl.TypePublicManagerImpl">
+		<property name="typepublicdao"><ref local="TypePublicDAO" /></property>
+    </bean>
+     <bean id="TypeReceptionManager" class="accueilccas.services.impl.TypeReceptionManagerImpl">
+		<property name="typereceptiondao"><ref local="TypeReceptionDAO" /></property>
+    </bean> 
+    <bean id="AttributCategorieManager" class="accueilccas.services.impl.AttributCategorieManagerImpl">
+		<property name="attributCategoriedao"><ref local="AttributCategorieDAO" /></property>
+		<property name="categoriedao"><ref local="CategorieDAO" /></property>
+		
+    </bean>
+    <bean id="GroupeManager" class="accueilccas.services.impl.GroupeManagerImpl">
+		<property name="dao"><ref local="GroupeDAO" /></property>
+    </bean> 
+    <bean id="UserManager" class="accueilccas.services.impl.UserManagerImpl">
+		<property name="userdao"><ref local="UserDAO" /></property>
+    </bean>  
+    <bean id="RapportManager" class="accueilccas.services.impl.RapportManagerImpl">
+		<property name="rapportdao"><ref local="RapportDAO" /></property>
+    </bean>   
+   
+    <!-- Beans DAO -->
+    <bean id="AccueilDAO" class="accueilccas.dao.impl.AccueilDAOImpl">
+		<property name="sessionFactory"><ref local="sessionFactory" /></property>
+    </bean>
+    
+    <bean id="TypeReceptionDAO" class="accueilccas.dao.impl.TypeReceptionDAOImpl">
+		<property name="sessionFactory"><ref local="sessionFactory" /></property>
+    </bean>
+    
+    <bean id="TypePublicDAO" class="accueilccas.dao.impl.TypePublicDAOImpl">
+		<property name="sessionFactory"><ref local="sessionFactory" /></property>
+    </bean>
+    
+    <bean id="CategorieDAO" class="accueilccas.dao.impl.CategorieDAOImpl">
+		<property name="sessionFactory"><ref local="sessionFactory" /></property>
+    </bean>
+    
+    <bean id="AttributCategorieDAO" class="accueilccas.dao.impl.AttributCategorieDAOImpl">
+		<property name="sessionFactory"><ref local="sessionFactory" /></property>
+    </bean>
+	<bean id="GroupeDAO" class="accueilccas.dao.impl.GroupeDAOImpl">
+		<property name="sessionFactory"><ref local="sessionFactory" /></property>
+    </bean>
+    <bean id="UserDAO" class="accueilccas.dao.impl.UserDAOImpl">
+		<property name="sessionFactory"><ref local="sessionFactory" /></property>
+    </bean>
+    <bean id="RapportDAO" class="accueilccas.dao.impl.RapportDAOImpl">
+		<property name="sessionFactory"><ref local="sessionFactory" /></property>
+    </bean>
+	
+	
+	<!-- Configuration HIBERNATE -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory"><ref local="sessionFactory"/></property>
+	</bean>
+	
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation"><value>classpath:hibernate.cfg.xml</value></property>
+		<property name="dataSource"><ref bean="dataSource"/></property>
+	</bean>
+	
+
+	<!--
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"><value>org.postgresql.Driver</value></property>
+		<property name="url"><value>"jdbc:postgresql://localhost/ccas</value></property>
+		<property name="username"><value>ccas</value></property>
+		<property name="password"><value>ccas</value></property>
+	</bean>
+	-->
+	
+	<!--<jee:jndi-lookup id="dataSource" jndi-name="jdbc/CCAS" resource-ref="true" />-->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/CCAS"/>
+	</bean>
+	
+	<!-- CONFIGURATION HIBERNATE -->
+	<aop:config>
+		<aop:advisor
+			pointcut="execution(* accueilccas.services.*Manager.*(..))"
+			advice-ref="txTest" />
+	</aop:config>
+	
+	<tx:advice id="txTest">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" read-only="false" />
+		</tx:attributes>
+	</tx:advice>
+	
+</beans>

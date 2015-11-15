@@ -1,0 +1,41 @@
+﻿<?xml version="1.0"?>
+<faqs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/FML/1.0"
+  xsi:schemaLocation="http://maven.apache.org/FML/1.0 http://maven.apache.org/xsd/fml-1.0.xsd"
+  id="FAQ">
+
+  <part id="Questions diverses">
+    <faq id="user-admin">
+      <question>Comment créer un user admin quand on n'a aucun utilisateur pré-configuré ?</question>
+      <answer>
+        <p>
+          En sql, simplement le créer :
+        </p>
+		<p>
+		INSERT INTO puser (login, css, admin, visible) VALUES ('LOGIN_WINDOWS', 'Magenta', TRUE, TRUE);
+		</p>
+      </answer>
+    </faq>
+	
+	<faq id="user_invisible_1">
+      <question>Quand le user se logge sur l'application, il ne se trouve pas dans la liste des utilisateurs</question>
+      <answer>
+        <p>
+          Soit l'utilsiateur existe déja, mais est invisible : il faut alors le mettre à visible ; soit il n'existe pas dans l'application (il faut alors le créer).
+        </p>
+      </answer>
+    </faq>
+	
+	<!--
+    <faq id="">
+      <question></question>
+      <answer>
+        <p>
+          
+        </p>
+      </answer>
+    </faq>
+	-->
+	
+
+  </part>
+</faqs>

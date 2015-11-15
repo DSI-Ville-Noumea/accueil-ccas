@@ -1,0 +1,56 @@
+ -----
+ Accueil CCAS
+ -----
+ DSI - SED
+ -----
+
+Guide de build
+
+* Pré-requis
+
+** Installation valide de maven ( >= 3.0.4)
+
+ Pour cela, suivre le {{{http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html}guide officiel}}
+ 
+
+
+** Installation valide de Java (>= 1.8)
+
+ Surtout ne pas oublier de positionner la variable d'environnement <<JAVA_HOME>>
+ 
+** Une connexion web
+
+	Utile pour télécharger les dépendances Maven du projet. L'idéal est de disposer d'une repo locale.
+	
+	
+** Installer manuellement la dépendance gnu-jaxp
+
+	Cette dépendance <<n'est plus trouvable>> sur la repo Central maven : il faut donc  <<l'installer manuellement>>. Pour cela,
+	il suffit de se positionner à la racine du projet, puis exécuter la commande suivante
+	
+------------------------------------------------------
+mvn install:install-file -Dfile=lib/gnujaxp-1.0.0.jar -DgroupId=gnujaxp -DartifactId=gnujaxp -Dversion=1.0.0 -Dpackaging=jar -DgeneratePom=true
+------------------------------------------------------
+
+
+* Build du war
+
+------------------------------------------------------
+mvn package
+------------------------------------------------------
+
+Si problèmes avec les tests sélénium
+
+------------------------------------------------------
+mvn -Dmaven.test.skip=true package
+------------------------------------------------------
+
+* Build du site Web du projet
+
+------------------------------------------------------
+mvn site
+------------------------------------------------------
+
+
+	A ce stade, la partie build de l'application est terminée : <<on dipose du war et de la documentation du projet>>.
+ 
