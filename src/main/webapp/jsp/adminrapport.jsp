@@ -1,3 +1,24 @@
+<%--
+  #%L
+  Accueil CCAS
+  %%
+  Copyright (C) 2012 - 2015 Mairie de NoumÃ©a
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/gpl-3.0.html>.
+  #L%
+  --%>
 <%@include file="inc/header.jsp"%>
 
 <c:if test="${sessionScope.loggedUser.admin==false}">
@@ -8,7 +29,7 @@
 
 <div id="main_inner" class="fluid">
 <div align="right">
-					<a href="admin.do">Administration des réponses</a> &nbsp; 
+					<a href="admin.do">Administration des rï¿½ponses</a> &nbsp; 
 					<a href="adminuser.do">Administration des utilisateurs</a> &nbsp;
 					<a href="adminrapport.do">Administration des rapports</a><br>
 </div>
@@ -55,7 +76,7 @@
 	</tr>
 	<tr>
 		<td></td>
-		<td><label>Votre fichier a été uploadé</label></td>
+		<td><label>Votre fichier a ï¿½tï¿½ uploadï¿½</label></td>
 		<c:remove var="nomFichier" scope="session" />
 	</tr>
 	</c:if>
@@ -78,7 +99,7 @@
 	<tr>
 		<td>
 		<center><display:table style="width:500px;" decorator="accueilccas.web.decorators.ModifRapportsTableDecorator" name="${listeRapports}" requestURI="adminrapport.do" pagesize="100"export="false">
-			<display:column property="id" title="N° Rapport" headerClass="enteteTableau" sortable="true" />
+			<display:column property="id" title="Nï¿½ Rapport" headerClass="enteteTableau" sortable="true" />
 			<display:column property="titre" title="Titre Rapport" headerClass="enteteTableau" sortable="true" />
 			<display:column property="description" title="Description Rapport" headerClass="enteteTableau" sortable="true" />
 			<!--<display:column property="url" autolink="true" href="${rapport.url}" title="Consulter Rapport" headerClass="enteteTableau" />-->
