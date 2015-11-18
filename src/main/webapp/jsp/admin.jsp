@@ -1,3 +1,24 @@
+<%--
+  #%L
+  Accueil CCAS
+  %%
+  Copyright (C) 2012 - 2015 Mairie de NoumÃ©a
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/gpl-3.0.html>.
+  #L%
+  --%>
 <%@include file="inc/header.jsp"%>
 
 <c:if test="${sessionScope.loggedUser.admin==false}">
@@ -16,7 +37,7 @@
 	<div id="main_inner" class="fluid">
 
 <div align="right">
-				<a href="admin.do">Administration des réponses</a> &nbsp;
+				<a href="admin.do">Administration des rï¿½ponses</a> &nbsp;
 				<a href="adminuser.do">Administration des utilisateurs</a> &nbsp;
 				<!-- <a href="adminrapport.do">Administration des rapports</a><br> -->
 				<br/>
@@ -122,7 +143,7 @@ jQuery(document).ready(function() {
 								+"</tr>");
 									});
 
-				//fonctionalité de drag and drop
+				//fonctionalitï¿½ de drag and drop
 				jQuery('#table-1').tableDnD({
 					  onDragClass: "myDragClass",
 			          onDrop: function(table, row)
@@ -145,7 +166,7 @@ jQuery(document).ready(function() {
 				function(data){
 								libelleRec=data.libelleTypeReception;
 								jQuery('#table-1bis').empty();
-								//formulaire d'édition d'un type de réception
+								//formulaire d'ï¿½dition d'un type de rï¿½ception
 								jQuery('#table-1bis').append("<tr><td><input id='editerReception'value= \""+libelleRec+"\" size='27' type='text'/></td>"
 										  					+"<td><input id='edit' type='button' value='Sauvegarder' onClick='modifierTypeReception("+elementId+")'/></td>"
 										  					+"</tr>");
@@ -175,7 +196,7 @@ jQuery(document).ready(function() {
 						});
 
 
-		//fonctionalité de drag and drop
+		//fonctionalitï¿½ de drag and drop
 		jQuery('#table-2').tableDnD({
 			  onDragClass: "myDragClass",
 	          onDrop: function(table, row)
@@ -231,7 +252,7 @@ jQuery(document).ready(function() {
 
 
 
-		//fonctionalité de drag and drop
+		//fonctionalitï¿½ de drag and drop
 		jQuery('#table-5').tableDnD({
 			  onDragClass: "myDragClass",
 	          onDrop: function(table, row)
@@ -266,7 +287,7 @@ jQuery(document).ready(function() {
 							libelleGroupe = data.nom;
 							
 							jQuery('#table-5bis').empty();
-							//formulaire d'édition de groupe
+							//formulaire d'ï¿½dition de groupe
 							jQuery('#table-5bis').append("<tr><td><input id='editerGroupe'value=\""+libelleGroupe+"\" size='27' type='text' />"
 									  					+"<input id='edit' type='button' value='Sauvegarder' onclick='modifierGroupe("+groupe_id+")'/></td>"
 									  					+"</tr>");
@@ -290,7 +311,7 @@ jQuery(document).ready(function() {
 
 
 
-		//fonctionalité de drag and drop
+		//fonctionalitï¿½ de drag and drop
 		jQuery('#table-6').tableDnD({
 			  onDragClass: "myDragClass",
 	          onDrop: function(table, row)
@@ -320,7 +341,7 @@ jQuery(document).ready(function() {
 							typeCategorie={idCategorie : data.idCategorie, libelleCategorie : data.libelleCategorie, positionCategorie : data.positionCategorie};
 							libelleCategorie=data.libelleCategorie;
 							jQuery('#table-6bis').empty();
-							//formulaire d'édition de catégorie
+							//formulaire d'ï¿½dition de catï¿½gorie
 							jQuery('#table-6bis').append("<tr><td><input id='editerCategorie'value=\""+libelleCategorie+"\" size='27' type='text' />"
 									  					+"<input id='edit' type='button' value='Sauvegarder' onclick='modifierCategorie("+elementId+")'/></td>"
 									  					+"</tr>");
@@ -352,28 +373,28 @@ jQuery(document).ready(function() {
 					Groupe={idGroupe : data.idgroupe, nom : data.nom, position: data.position, categories : data.categories};
 					idCat=  Groupe.categorie
 
-					jQuery("#table-6").before("<h4 id='titreEditCategories'> Edition des catégories de groupe</h4>");
+					jQuery("#table-6").before("<h4 id='titreEditCategories'> Edition des catï¿½gories de groupe</h4>");
 
 					for (Val in Groupe.categories)
 					{	
 						
-						//affichage des catégories actives
+						//affichage des catï¿½gories actives
 						if(Groupe.categories[Val].enabled==true)
 						{
 							catChecked="checked";
 																		
-						// affichage liste des catégories
+						// affichage liste des catï¿½gories
 							jQuery("#table-6").append("<tr id="+Groupe.categories[Val].idCategorie+"><td onclick='chargerAttribut("+Groupe.categories[Val].idCategorie+")'>"+Groupe.categories[Val].libelleCategorie+"</td>"
 									+"<td><input type='image' src=' ./img/edit_profile.gif' onclick='editCategorie("+Groupe.categories[Val].idCategorie+")'/></td>"
 									+"<td><input id='"+Groupe.categories[Val].idCategorie+"' type='checkbox' "+catChecked+" onclick='cat_activation("+Groupe.categories[Val].idCategorie+");'/></td>"
 									+"</tr>");
 						}	
 
-						//affichage des catégories désactivées(checkboxes décochées au chargement)
+						//affichage des catï¿½gories dï¿½sactivï¿½es(checkboxes dï¿½cochï¿½es au chargement)
 						else
 						{
 							catChecked="";
-							// affichage liste des catégories
+							// affichage liste des catï¿½gories
 							jQuery("#table-6").append("<tr id="+Groupe.categories[Val].idCategorie+"><td onclick='chargerAttribut("+Groupe.categories[Val].idCategorie+")'>"+Groupe.categories[Val].libelleCategorie+"</td>"
 									+"<td><input type='image' src=' ./img/edit_profile.gif' onclick='editCategorie("+Groupe.categories[Val].idCategorie+")'/></td>"
 									+"<td><input id='"+Groupe.categories[Val].idCategorie+"' type='checkbox' "+catChecked+" onclick='cat_activation("+Groupe.categories[Val].idCategorie+");'/></td>"
@@ -381,7 +402,7 @@ jQuery(document).ready(function() {
 						}
 					}
 
-					//fonctionalité de drag and drop
+					//fonctionalitï¿½ de drag and drop
 					jQuery('#table-6').tableDnD({
 						  onDragClass: "myDragClass",
 				          onDrop: function(table, row)
@@ -397,10 +418,10 @@ jQuery(document).ready(function() {
 				  		      		}
 				      });
 
-					//formulaire ajouter nouvelles catégorie
-					chaineCategorie='\"Ajouter une catégorie\"';
+					//formulaire ajouter nouvelles catï¿½gorie
+					chaineCategorie='\"Ajouter une catï¿½gorie\"';
 					
-					jQuery("#table-6bis").after("<center><input name='ajoutCategorie' id='ajoutCategorieChamps' value='Ajouter une catégorie'  size='27' type='text' onclick='if(this.value==value)this.value= \"\";'>"
+					jQuery("#table-6bis").after("<center><input name='ajoutCategorie' id='ajoutCategorieChamps' value='Ajouter une catï¿½gorie'  size='27' type='text' onclick='if(this.value==value)this.value= \"\";'>"
 							+"<input type='button'id='ajoutCategorieForm'  value='Ajouter' onClick='ajouterCategorie("+idGroupe+"); ajoutCategorieChamps.value="+chaineCategorie+"' </input>"
 							+"</center>");
 							});
@@ -425,7 +446,7 @@ jQuery(document).ready(function() {
 			});
 
 
-		//fonctionalité de drag and drop
+		//fonctionalitï¿½ de drag and drop
 		jQuery('#table-4').tableDnD({
 			  onDragClass: "myDragClass",
 	          onDrop: function(table, row)
@@ -500,7 +521,7 @@ jQuery(document).ready(function() {
 				+"</tr>");
 
 				}
-				//affichage des attributs désactivés (checkboxes décochées au chargement)
+				//affichage des attributs dï¿½sactivï¿½s (checkboxes dï¿½cochï¿½es au chargement)
 				else{
 					
 					attCheck="";
@@ -514,7 +535,7 @@ jQuery(document).ready(function() {
 
 
 			
-			//fonctionalité de drag and drop
+			//fonctionalitï¿½ de drag and drop
 			jQuery('#table-4').tableDnD({
 		  	    onDragClass: "myDragClass",
 		        onDrop: function(table, row) {
@@ -636,7 +657,7 @@ jQuery(document).ready(function() {
 -->
 </script>
 
-<!-- Type de réception -->
+<!-- Type de rï¿½ception -->
 <!--  
 <br/>
 				Declarer un probleme en cliquant <a href='http://svn/trac/accueilccas/newticket'>ICI</a><br/>
@@ -644,7 +665,7 @@ jQuery(document).ready(function() {
 <br />
 -->
 
-<!-- Réceptions -->
+<!-- Rï¿½ceptions -->
 <h4 class="banniere">Gestion des types de reception</h4>
 <table id="table-1" cellspacing="0" cellpadding="2" varStatus="statut">
 	<c:forEach items="${modele.receptions}" var="type">
@@ -662,8 +683,8 @@ jQuery(document).ready(function() {
 
 <center>
 	<form name="formAjoutTypeReception">
-		<input id="ajoutReceptionChamps" name="ajoutReception" onclick="if(this.value==value)this.value='';" value="Ajouter un type de réception" size="27" type="text"></input> 
-		<input type="button" value="Ajouter" onClick="ajouterReception(); ajoutReceptionChamps.value='Ajouter un type de réception' "></input>
+		<input id="ajoutReceptionChamps" name="ajoutReception" onclick="if(this.value==value)this.value='';" value="Ajouter un type de rï¿½ception" size="27" type="text"></input> 
+		<input type="button" value="Ajouter" onClick="ajouterReception(); ajoutReceptionChamps.value='Ajouter un type de rï¿½ception' "></input>
 	</form>
 </center>
 
@@ -688,8 +709,8 @@ jQuery(document).ready(function() {
 </center>
 
 
-<!-- Groupes de réponse -->
- <h4 class="banniere">Gestion des groupes de réponse </h4>
+<!-- Groupes de rï¿½ponse -->
+ <h4 class="banniere">Gestion des groupes de rï¿½ponse </h4>
  <table id="table-5" cellspacing="0" cellpadding="2" varStatus="statut">
 	<c:forEach items="${modele.groupes}" var="type">
 		<tr id="${type.idgroupe}">
@@ -709,7 +730,7 @@ jQuery(document).ready(function() {
 	</form>
 </center>
 
-<!-- Catégories -->
+<!-- Catï¿½gories -->
 <table id="table-6" cellspacing="0" cellpadding="2"  >
 	<tr id="${type.idCategorie}">
 		<td onclick="chargerAttribut(${type.idCategorie})"></td>

@@ -1,3 +1,24 @@
+<!--
+  #%L
+  Accueil CCAS
+  %%
+  Copyright (C) 2012 - 2015 Mairie de NoumÃ©a
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/gpl-3.0.html>.
+  #L%
+  -->
 <document xmlns="http://maven.apache.org/DOCUMENT/1.0.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/DOCUMENT/1.0.1 http://maven.apache.org/xsd/document-1.0.1.xsd"
@@ -12,16 +33,16 @@
 			<lastName>Sales</lastName>
 			<name>salad74</name>
 			<initials>AS</initials>
-			<title>Chef de Département</title>
+			<title>Chef de Dï¿½partement</title>
 			<position/>
 			<email>Adrien.Sales@ville-noumea.nc</email>
 			<phoneNumber/>
 			<faxNumber/>
-			<companyName>Mairie de Nouméa</companyName>
+			<companyName>Mairie de Noumï¿½a</companyName>
 			<street/>
-			<city>Nouméa</city>
+			<city>Noumï¿½a</city>
 			<postalCode>98800</postalCode>
-			<country>Nouvelle-Calédonie</country>
+			<country>Nouvelle-Calï¿½donie</country>
 			<state>Province-Sud</state>
 		  </author>
     </authors>
@@ -32,7 +53,7 @@
     
 	<pageSize/>
     <generator/>
-    <description>Ceci est la documentation technique permettant à la fois d'installer, de compiler et d'exploiter Accueil CCAS de manière intégrée.</description>
+    <description>Ceci est la documentation technique permettant ï¿½ la fois d'installer, de compiler et d'exploiter Accueil CCAS de maniï¿½re intï¿½grï¿½e.</description>
     <initialCreator>Adrien Sales</initialCreator>
     <creator>Adrien Sales</creator>
     <printedBy/>
@@ -77,16 +98,16 @@
 			<lastName>Sales</lastName>
 			<name>salad74</name>
 			<initials>AS</initials>
-			<title>Chef de Département</title>
+			<title>Chef de Dï¿½partement</title>
 			<position/>
 			<email>Adrien.Sales@ville-noumea.nc</email>
 			<phoneNumber/>
 			<faxNumber/>
-			<companyName>Mairie de Nouméa</companyName>
+			<companyName>Mairie de Noumï¿½a</companyName>
 			<street/>
-			<city>Nouméa</city>
+			<city>Noumï¿½a</city>
 			<postalCode>98800</postalCode>
-			<country>Nouvelle-Calédonie</country>
+			<country>Nouvelle-Calï¿½donie</country>
 			<state>Province-Sud</state>
 		  </author>
     </authors>

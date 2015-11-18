@@ -6,18 +6,17 @@
 	<artifactId>ccas</artifactId>
 	<packaging>war</packaging>
 	<name>Accueil CCAS</name>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<organization>
 		<name>Mairie de Nouméa</name>
 		<url>http://www.ville-noumea.nc</url>
 	</organization>
+	<inceptionYear>2012</inceptionYear>
 
 	<licenses>
 		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
-			<distribution>repo</distribution>
-			<comments>Apache License</comments>
+			<name>GNU General Public License (GPL) v3</name>
+			<url>http://www.gnu.org/copyleft/gpl.html</url>
 		</license>
 	</licenses>
 
@@ -117,7 +116,7 @@
 	</description>
 
 	<!-- Gestion de bugs a customiser -->
-	<!-- <issueManagement> <system>trac</system> <url>http://mytracserver.local/trac/MYPROJECT/</url> 
+	<!-- <issueManagement> <system>trac</system> <url>http://mytracserver.local/trac/MYPROJECT/</url>
 		</issueManagement> -->
 
 	<scm>
@@ -296,7 +295,7 @@
 		</dependency>
 
 		<!-- Si on travailler avec MySQL -->
-		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
+		<!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId>
 			<version>5.1.21</version> </dependency> -->
 
 		<dependency>
@@ -306,7 +305,7 @@
 		</dependency>
 
 		<!-- dwr officiel -->
-		<!-- <dependency> <groupId>org.directwebremoting</groupId> <artifactId>dwr</artifactId> 
+		<!-- <dependency> <groupId>org.directwebremoting</groupId> <artifactId>dwr</artifactId>
 			<version>3.0.M1</version> </dependency> -->
 
 
@@ -488,6 +487,31 @@
 						<contextPath>/${project.name}</contextPath>
 					</webAppConfig>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.8</version>
+				<configuration>
+					<verbose>false</verbose>
+					<licenseName>gpl_v3</licenseName>
+				</configuration>
+				<executions>
+					<execution>
+						<id>first</id>
+						<goals>
+							<goal>update-file-header</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<licenseName>gpl_v3</licenseName>
+							<roots>
+								<root>src/main/java</root>
+								<root>src/test</root>
+							</roots>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
