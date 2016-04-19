@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/DSI-Ville-Noumea/accueil-ccas.svg?branch=master)](https://travis-ci.org/DSI-Ville-Noumea/accueil-ccas)
+
 # accueil-ccas
 
 Logiciel de gestion d'acueil du CCAS : il permet de saisir les demandes relatives aux CCAS (demandes de tickets, ...), de les enregistrer pour ensuite pouvoir en faire des statistiques.
