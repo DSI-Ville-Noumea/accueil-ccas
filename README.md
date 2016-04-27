@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/DSI-Ville-Noumea/accueil-ccas.svg?branch=master)](https://travis-ci.org/DSI-Ville-Noumea/accueil-ccas) [![Dependency Status](https://www.versioneye.com/user/projects/572141e7fcd19a0039f18392/badge.svg?style=flat)](https://www.versioneye.com/user/projects/572141e7fcd19a0039f18392) [![Code Climate](https://codeclimate.com/github/DSI-Ville-Noumea/accueil-ccas/badges/gpa.svg)](https://codeclimate.com/github/DSI-Ville-Noumea/accueil-ccas)
+[![Build Status](https://travis-ci.org/DSI-Ville-Noumea/accueil-ccas.svg?branch=master)](https://travis-ci.org/DSI-Ville-Noumea/accueil-ccas) [![Dependency Status](https://www.versioneye.com/user/projects/572141e7fcd19a0039f18392/badge.svg?style=flat)](https://www.versioneye.com/user/projects/572141e7fcd19a0039f18392) [![Code Climate](https://codeclimate.com/github/DSI-Ville-Noumea/accueil-ccas/badges/gpa.svg)](https://codeclimate.com/github/DSI-Ville-Noumea/accueil-ccas) [![Issue Count](https://codeclimate.com/github/DSI-Ville-Noumea/accueil-ccas/badges/issue_count.svg)](https://codeclimate.com/github/DSI-Ville-Noumea/accueil-ccas)
 
 # accueil-ccas
 
