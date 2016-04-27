@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/DSI-Ville-Noumea/accueil-ccas.svg?branch=master)](https://travis-ci.org/DSI-Ville-Noumea/accueil-ccas)
+[![Build Status](https://travis-ci.org/DSI-Ville-Noumea/accueil-ccas.svg?branch=master)](https://travis-ci.org/DSI-Ville-Noumea/accueil-ccas) [![Dependency Status](https://www.versioneye.com/user/projects/572141e7fcd19a0039f18392/badge.svg?style=flat)](https://www.versioneye.com/user/projects/572141e7fcd19a0039f18392)
 
 # accueil-ccas
 
